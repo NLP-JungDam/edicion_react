@@ -1,0 +1,57 @@
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #F1EBF5;
+    padding: 30px;
+}
+
+.infoSection {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.email {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.menuSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menuItem {
+    padding: 15px 0;
+    border-bottom: 1px solid #B39DDB;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btnBox {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    background-color: #B39DDB;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
