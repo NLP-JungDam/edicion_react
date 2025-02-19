@@ -48,18 +48,28 @@
   padding: 20px;
 }
 
-.section {
-  margin-bottom: 20px;
-}
-
-h3 {
+/* 공통 제목 스타일 */
+.h3 {
   margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 /* 수정 가능한 input */
-input, textarea {
+.inputField {
   width: 100%;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  font-size: 14px;
+}
+
+/* 수정 가능한 textarea */
+.textareaField {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  resize: vertical;
 }
