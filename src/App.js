@@ -5,6 +5,7 @@ import User from "./routes/User.jsx";
 import Login from "./routes/Login.jsx";
 import Signup from "./routes/Signup.jsx";
 import Employer from "./routes/Employer.jsx";
+import Footer from "./components/Footer.jsx"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/user/*" element={<User />} />
         <Route path="/employer/*" element={<Employer />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

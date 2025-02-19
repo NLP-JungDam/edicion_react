@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaCog } from "react-icons/fa"; // 설정 아이콘
 import styles from "./UserHeader.module.css";
 
 const UserHeader = () => {
@@ -8,19 +9,30 @@ const UserHeader = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo} onClick={() => navigate("/")}>Edición</div>
-      
-      <div className={styles.rightSection}>
-        <button className={styles.iconButton} onClick={() => setShowMenu(!showMenu)}>⚙️</button>
-
-        {showMenu && (
-          <div className={styles.dropdownMenu}>
-            <button onClick={() => navigate("/user/settings")}>설정</button>
-            <button onClick={() => navigate("/user/profile")}>프로필 관리</button>
-            <button onClick={() => navigate("/user/logout")}>로그아웃</button>
-          </div>
-        )}
+      {/* 왼쪽 로고 */}
+      <div className={styles.logo} onClick={() => navigate("/user")}>
+        <span className={styles.logoBlack}>Edi</span>
+        <span className={styles.logoOrange}>ción</span>
       </div>
+
+      {/* 오른쪽 설정 버튼 */}
+      <div className={styles.rightSection}>
+        <FaCog className={styles.settingsIcon} onClick={() => setShowMenu(!showMenu)} />
+      </div>
+
+      {/* 토글되는 네비게이션 메뉴 */}
+      {showMenu && (
+        <div className={styles.dropdownMenu}>
+          <ul>
+            <li>
+              <button onClick={() => { navigate("/user"); setShowMenu(false); }}>메인</button>
+            </li>
+            <li>
+              <button onClick={() => { navigate("/mypage"); setShowMenu(false); }}>내 정보</button>
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 };
