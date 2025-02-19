@@ -1,0 +1,58 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .rightSection {
+    position: relative;
+  }
+  
+  .iconButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .iconButton:hover {
+    color: #000;
+  }
+  
+  /* 드롭다운 메뉴 */
+  .dropdownMenu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdownMenu button {
+    background: none;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .dropdownMenu button:hover {
+    background: #f0f0f0;
+  }
+  

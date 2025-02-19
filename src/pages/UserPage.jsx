@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./UserPage.module.css";
 
-function UserPage() {
+const UserPage = () => {
   return (
     <div className={styles.container}>
       {/* 제목 텍스트 section */}
@@ -43,6 +43,6 @@ function UserPage() {
       </section>
     </div>
   );
-}
+};
 
 export default UserPage;
