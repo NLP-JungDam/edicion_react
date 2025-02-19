@@ -1,0 +1,41 @@
+/* 전체 컨테이너 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f9f4f8;
+  }
+  
+  /* 타이틀 스타일 */
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+  
+  /* 버튼 컨테이너 */
+  .buttonContainer {
+    display: flex;
+    gap: 50px;
+  }
+  
+  /* 로그인 버튼 */
+  .loginButton {
+    padding: 10px 20px;
+    border: 2px solid black;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* 푸터 스타일 */
+  .footer {
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #d3d3d3;
+    width: 100%;
+    text-align: center;
+  }
+  

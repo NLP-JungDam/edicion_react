@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Main from "./routes/Main"; // 기존 라우터 파일
+import Main from "./routes/Main"; 
 import User from "./routes/User.jsx";
+import Login from "./routes/Login.jsx";
+import Signup from "./routes/Signup.jsx";
 import Employer from "./routes/Employer.jsx";
 
 function App() {
@@ -9,6 +11,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/user/*" element={<User />} />
         <Route path="/employer/*" element={<Employer />} />
       </Routes>
