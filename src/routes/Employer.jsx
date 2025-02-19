@@ -4,9 +4,11 @@ import EmployerHeaders from "../components/EmployerHeader.jsx";
 
 const Employer = () => {
   return (
-    <Routes>
+    <>
       <EmployerHeaders />
-    </Routes>
+      <Routes>
+      </Routes>
+    </>
   );
 };
 
