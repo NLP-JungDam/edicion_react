@@ -7,11 +7,20 @@ const EmployerHeader = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo} onClick={() => navigate("/")}>Edición</div>
-      
-      <div className={styles.rightSection}>
-        <button className={styles.mainButton} onClick={() => navigate("/employer/jobpost")}>공고 등록</button>
-        <button className={styles.mainButton} onClick={() => navigate("/employer/mypage")}>마이페이지</button>
+      {/* 왼쪽 로고 */}
+      <div className={styles.logo} onClick={() => navigate("/employer")}>
+        <span className={styles.logoBlack}>Edi</span>
+        <span className={styles.logoOrange}>ción</span>
+      </div>
+
+      {/* 오른쪽 버튼들 */}
+      <div className={styles.buttonContainer}>
+        <button className={styles.button} onClick={() => navigate("/employer/applicants")}>
+          지원 현황
+        </button>
+        <button className={styles.button} onClick={() => navigate("/employer/recommended")}>
+          추천 인재
+        </button>
       </div>
     </header>
   );

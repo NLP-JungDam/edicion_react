@@ -1,0 +1,62 @@
+/* 전체 레이아웃 */
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* 왼쪽 지원자 리스트 */
+  .sidebar {
+    width: 250px;
+    background: #e6e6e6;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* 지원자 카드 */
+  .applicantCard {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .name {
+    font-weight: bold;
+  }
+  
+  .match {
+    color: gray;
+  }
+  
+  .viewButton {
+    background: #6a5acd;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+  
+  .viewButton:hover {
+    background: #5a4db2;
+  }
+  
+  /* 오른쪽 이력서 영역 */
+  .resumeContainer {
+    flex: 1;
+    padding: 20px;
+    background: #f9f9f9;
+  }
+  
+  .resumeBox {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  

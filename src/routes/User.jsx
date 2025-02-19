@@ -7,13 +7,13 @@ import UserinfoPage from "../pages/UserinfoPage.jsx";
 
 const User = () => {
   return (
-    <div>
-      <UserHeader /> {/* ✅ 항상 보이는 Header */}
+    <>
+      <UserHeaders /> {/* 사용자 헤더 추가 */}
       <Routes>
-        <Route path="/" element={<UserPage />} />
-        <Route path="/resume" element={<ResumePage />} />
+        <Route path="/" element={<UserPage />} /> {/* /user */}
+        <Route path="/resume" element={<ResumePage />} /> {/* /user/resume */}
       </Routes>
-    </div>
+    </>
   );
 };
 
