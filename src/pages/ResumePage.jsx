@@ -82,19 +82,19 @@ const ResumePage = () => {
         {/* 오른쪽 이력서 상세 정보 */}
         <div className={styles.detailsSection}>
           <div className={styles.section}>
-            <h3>학력사항</h3>
+            <h3 className={styles.h3}>학력사항</h3>
             {isEditing ? (
-              <input type="text" value={resumeData.education} onChange={(e) => handleChange(e, "education")} />
+              <input type="text" className={styles.inputField} value={resumeData.education} onChange={(e) => handleChange(e, "education")} />
             ) : (
               <p>{resumeData.education}</p>
             )}
           </div>
           <div className={styles.section}>
-            <h3>경력사항</h3>
+            <h3 className={styles.h3}>경력사항</h3>
             {resumeData.experience.map((exp, index) => (
               <div key={index}>
                 {isEditing ? (
-                  <input type="text" value={exp} onChange={(e) => handleChange(e, "experience", index)} />
+                  <input type="text" className={styles.inputField} value={exp} onChange={(e) => handleChange(e, "experience", index)} />
                 ) : (
                   <p>{exp}</p>
                 )}
@@ -102,11 +102,11 @@ const ResumePage = () => {
             ))}
           </div>
           <div className={styles.section}>
-            <h3>자격증</h3>
+            <h3 className={styles.h3}>자격증</h3>
             {resumeData.certificates.map((cert, index) => (
               <div key={index}>
                 {isEditing ? (
-                  <input type="text" value={cert} onChange={(e) => handleChange(e, "certificates", index)} />
+                  <input type="text" className={styles.inputField} value={cert} onChange={(e) => handleChange(e, "certificates", index)} />
                 ) : (
                   <p>{cert}</p>
                 )}
@@ -114,9 +114,9 @@ const ResumePage = () => {
             ))}
           </div>
           <div className={styles.section}>
-            <h3>자기소개서</h3>
+            <h3 className={styles.h3}>자기소개서</h3>
             {isEditing ? (
-              <textarea value={resumeData.selfIntroduction} onChange={(e) => handleChange(e, "selfIntroduction")} />
+              <textarea className={styles.textareaField} value={resumeData.selfIntroduction} onChange={(e) => handleChange(e, "selfIntroduction")} />
             ) : (
               <p>{resumeData.selfIntroduction}</p>
             )}
