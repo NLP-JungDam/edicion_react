@@ -1,0 +1,79 @@
+/* 전체 헤더 스타일 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #f4f0f7;
+    border-bottom: 2px solid #ddd;
+    position: relative;
+  }
+  
+  /* 로고 스타일 */
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .logoBlack {
+    color: black;
+  }
+  
+  .logoOrange {
+    color: orange;
+  }
+  
+  /* 오른쪽 설정 버튼 */
+  .rightSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .settingsIcon {
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .settingsIcon:hover {
+    color: orange;
+  }
+  
+  /* 드롭다운 메뉴 스타일 */
+  .dropdownMenu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 150px;
+    padding: 10px 0;
+  }
+  
+  .dropdownMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dropdownMenu li {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .dropdownMenu li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .dropdownMenu li a:hover {
+    background: #f4f0f7;
+  }
+  

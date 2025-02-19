@@ -6,11 +6,13 @@ import ResumePage from "../pages/ResumePage.jsx";
 
 const User = () => {
   return (
-    <Routes>
-      <UserHeaders />
-      <Route path="/" element={<UserPage />} />
-      <Route path="/resume" element={<ResumePage />} />
-    </Routes>
+    <>
+      <UserHeaders /> {/* 사용자 헤더 추가 */}
+      <Routes>
+        <Route path="/" element={<UserPage />} /> {/* /user */}
+        <Route path="/resume" element={<ResumePage />} /> {/* /user/resume */}
+      </Routes>
+    </>
   );
 };
 
