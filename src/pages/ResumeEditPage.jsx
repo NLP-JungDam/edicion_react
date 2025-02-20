@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Resume from "../components/Resume"; // Resume 컴포넌트 추가
 import styles from "./ResumeEditPage.module.css";
 
 const ResumeEditPage = () => {
@@ -8,7 +9,7 @@ const ResumeEditPage = () => {
   // 수정 모드 상태 관리
   const [isEditing, setIsEditing] = useState(false);
 
-  // 이력서 데이터 상태 관리 (임시 데이터)
+  // 이력서 데이터 상태 관리
   const [resumeData, setResumeData] = useState({
     profileImage: "", // 나중에 이미지 URL 추가
     name: "김사과",
@@ -49,64 +50,8 @@ const ResumeEditPage = () => {
 
   return (
     <div className={styles.container}>
-      {/* 이력서 박스 */}
-      <div className={styles.resumeWrapper}>
-        {/* 왼쪽 프로필 정보 */}
-        <div className={styles.profileSection}>
-          <div className={styles.profileImage}></div>
-          <div className={styles.profileInfo}>
-            <p><strong>이름</strong><br /> {resumeData.name}</p>
-            <p><strong>생년월일</strong><br /> {resumeData.birth}</p>
-            <p><strong>이메일</strong><br /> {resumeData.email}</p>
-            <p><strong>연락처</strong><br /> {resumeData.phone}</p>
-            <p><strong>주소</strong><br /> {resumeData.address}</p>
-          </div>
-        </div>
-
-        {/* 오른쪽 이력서 정보 */}
-        <div className={styles.detailsSection}>
-          <div className={styles.resumeSection}>
-            <h3>학력사항</h3>
-            {isEditing ? (
-              <input type="text" className={styles.inputField} value={resumeData.education} onChange={(e) => handleChange(e, "education")} />
-            ) : (
-              <p>{resumeData.education}</p>
-            )}
-          </div>
-          <div className={styles.resumeSection}>
-            <h3>경력사항</h3>
-            {resumeData.experience.map((exp, index) => (
-              <div key={index}>
-                {isEditing ? (
-                  <input type="text" className={styles.inputField} value={exp} onChange={(e) => handleChange(e, "experience", index)} />
-                ) : (
-                  <p>{exp}</p>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className={styles.resumeSection}>
-            <h3>자격증</h3>
-            {resumeData.certificates.map((cert, index) => (
-              <div key={index}>
-                {isEditing ? (
-                  <input type="text" className={styles.inputField} value={cert} onChange={(e) => handleChange(e, "certificates", index)} />
-                ) : (
-                  <p>{cert}</p>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className={styles.resumeSection}>
-            <h3>자기소개서</h3>
-            {isEditing ? (
-              <textarea className={styles.textareaField} value={resumeData.selfIntroduction} onChange={(e) => handleChange(e, "selfIntroduction")} />
-            ) : (
-              <p>{resumeData.selfIntroduction}</p>
-            )}
-          </div>
-        </div>
-      </div>
+      {/* 이력서 컴포넌트 */}
+      <Resume resumeData={resumeData} isEditing={isEditing} handleChange={handleChange} />
 
       {/* 버튼 영역 */}
       <div className={styles.buttonContainer}>
