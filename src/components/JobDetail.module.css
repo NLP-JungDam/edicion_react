@@ -1,0 +1,14 @@
+.jobDetail {
+    padding: 15px;
+    width: 360px;
+}
+
+.jobDetail h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.jobDetail p {
+    font-size: 14px;
+    margin: 4px 0;
+}
