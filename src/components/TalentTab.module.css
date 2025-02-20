@@ -1,0 +1,18 @@
+.tabContainer {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+  
+.tabButton {
+    padding: 10px 16px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+}
+  
+.active {
+    font-weight: 700;
+}
+  

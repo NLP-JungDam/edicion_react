@@ -1,0 +1,64 @@
+.container {
+    padding: 16px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.card {
+    padding: 16px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.score {
+    color: gray;
+}
+
+.details p {
+    margin: 4px 0;
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    list-style: none;
+    padding: 0;
+}
+
+.paginationLink {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}
+
+.active {
+    background: #999;
+    color: white;
+    border: none;
+}
+
+.disabled {
+    color: gray;
+    cursor: not-allowed;
+}
