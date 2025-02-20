@@ -28,7 +28,7 @@ const UserHeader = () => {
       {menuOpen && (
         <div className={styles.dropdown__menu}>
           <button onClick={() => { navigate("/"); toggleMenu(); }}>메인</button>
-          <button onClick={() => { navigate("/mypage"); toggleMenu(); }}>내 정보</button>
+          <button onClick={() => { navigate("/user/info"); toggleMenu(); }}>내 정보</button>
         </div>
       )}
     </header>

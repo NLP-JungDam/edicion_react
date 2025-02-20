@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./JobList.module.css";
 import JobDetail from "./JobDetail";
+import Modal from "./Modal"
 
 // 더미
 const jobs = [
@@ -13,8 +15,10 @@ const jobs = [
   ];
 
 const JobList = () => {
+  const navigate = useNavigate();
   const [selectedJobIndex, setSelectedJobIndex] = useState(null);
   const [selectedJobs, setSelectedJobs] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const toggleJobDetail = (index) => {
       setSelectedJobIndex(selectedJobIndex === index ? null : index);
@@ -34,8 +38,16 @@ const JobList = () => {
       return;
     }
 
+    // 모달 열기
+    setIsModalOpen(true);
     // 추후 백엔드 API 연동
     alert(`selectedJobs 확인용: ${selectedJobs.join(", ")}`);
+  };
+
+  // 모달에서 확인 버튼 클릭 시 실행되는 함수
+  const handleSubmitDetails = () => {
+    setIsModalOpen(false);
+    navigate("/user/info"); // 제출 내역 페이지로 이동
   };
 
   return (
@@ -71,6 +83,15 @@ const JobList = () => {
       <button className={styles.submitButton} onClick={handleSubmit}>
         이력서 제출하기
       </button>
+
+      {/* 모달 컴포넌트 사용 */}
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+        message="이력서가 제출되었어요!" 
+        buttonText="제출 내역 보러 가기" 
+        onConfirm={handleSubmitDetails} 
+      />
     </div>
   );
 };
