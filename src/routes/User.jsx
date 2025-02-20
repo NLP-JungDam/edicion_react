@@ -5,6 +5,7 @@ import UserfitPage from "../pages/UserfitPage.jsx"
 import UserPage from "../pages/UserPage.jsx";
 import ResumePage from "../pages/ResumePage.jsx";
 import UserinfoPage from "../pages/UserinfoPage.jsx";
+import ResumeEditPage from "../pages/ResumeEditPage.jsx";
 
 const User = () => {
   return (
@@ -15,6 +16,7 @@ const User = () => {
         <Route path="/fit" element={<UserfitPage />} /> {/* /user */}
         <Route path="/info" element={<UserinfoPage />} /> {/* /user */}
         <Route path="/resume" element={<ResumePage />} /> {/* /user/resume */}
+        <Route path="/resume/edit" element={<ResumeEditPage />} /> {/* /user/resume/edit */}
       </Routes>
     </>
   );
