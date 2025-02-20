@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaCog } from "react-icons/fa"; // 설정 아이콘
 import styles from "./UserHeader.module.css";
+import { FaCog } from "react-icons/fa"; // 설정 아이콘
 
 const UserHeader = () => {
   const navigate = useNavigate();
-  const [showMenu, setShowMenu] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // 메뉴 열림/닫힘 상태 관리
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <header className={styles.header}>
@@ -17,20 +21,14 @@ const UserHeader = () => {
 
       {/* 오른쪽 설정 버튼 */}
       <div className={styles.rightSection}>
-        <FaCog className={styles.settingsIcon} onClick={() => setShowMenu(!showMenu)} />
+        <FaCog className={styles.settingsIcon} onClick={toggleMenu} />
       </div>
 
-      {/* 토글되는 네비게이션 메뉴 */}
-      {showMenu && (
-        <div className={styles.dropdownMenu}>
-          <ul>
-            <li>
-              <button onClick={() => { navigate("/user"); setShowMenu(false); }}>메인</button>
-            </li>
-            <li>
-              <button onClick={() => { navigate("/mypage"); setShowMenu(false); }}>내 정보</button>
-            </li>
-          </ul>
+      {/* 드롭다운 메뉴 */}
+      {menuOpen && (
+        <div className={styles.dropdown__menu}>
+          <button onClick={() => { navigate("/"); toggleMenu(); }}>메인</button>
+          <button onClick={() => { navigate("/mypage"); toggleMenu(); }}>내 정보</button>
         </div>
       )}
     </header>
