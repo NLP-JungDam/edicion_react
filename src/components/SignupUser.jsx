@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ 페이지 이동을 위한 useNavigate 추가
 import styles from "./SignupUser.module.css";
 
 const SignupUser = () => {
+    const navigate = useNavigate(); // ✅ 페이지 이동을 위한 useNavigate 훅 선언
+
     const [form, setForm] = useState({
-        userId:"",
+        userId: "",
         name: "",
         email: "",
         phoneNumber: "", 
@@ -39,7 +42,7 @@ const SignupUser = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/auth/signup", {
+            const response = await fetch("http://localhost:8080/auth/signup/user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formattedData),
@@ -50,6 +53,9 @@ const SignupUser = () => {
             if (response.ok) {
                 alert("회원가입 성공!");
                 console.log("Response:", data);
+                
+                // ✅ 회원가입 성공 후 로그인 페이지로 이동
+                navigate("/login"); 
             } else {
                 alert(`회원가입 실패: ${data.message}`);
             }

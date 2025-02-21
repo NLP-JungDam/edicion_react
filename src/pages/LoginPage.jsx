@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import LoginUser from "../components/LoginUser";
+import LoginEmployer from "../components/LoginEmployer";
 import styles from "./LoginPage.module.css";
 
 const LoginPage = () => {
@@ -19,23 +21,7 @@ const LoginPage = () => {
 
   const handleTabClick = (type) => {
     setActiveTab(type);
-    window.history.replaceState(null, "", `/login?type=${type}`);
-  };
-
-  const handleLogin = () => {
-    navigate(activeTab === "user" ? "/user" : "/employer");
-  };
-
-  const handleSignup = () => {
-    navigate(activeTab === "user" ? "/signup/user" : "/signup/employer");
-  };
-
-  const handleFindId = () => {
-    navigate(activeTab === "user" ? "/find-id/user" :"/find-id/user");
-  };
-
-  const handleFindPw = () => {
-    navigate(activeTab === "user" ? "/find-password/user" : "/find-password/employer");
+    navigate(`/login?type=${type}`);
   };
 
   return (
@@ -51,24 +37,8 @@ const LoginPage = () => {
         </button>
       </div>
 
-      <div className={styles.formContainer}>
-        <input type="text" className={styles.input} placeholder="아이디" />
-        <input type="password" className={styles.input} placeholder="비밀번호" />
-        <div className={styles.checkboxContainer}>
-          <input type="checkbox" id="keepLogin" />
-          <label htmlFor="keepLogin">로그인 상태 유지</label>
-        </div>
-
-        <button className={styles.loginButton} onClick={handleLogin}>
-          {activeTab === "user" ? "개인 회원 로그인" : "기업 회원 로그인"}
-        </button>
-      </div>
-
-      <div className={styles.footerLinks}>
-        <button onClick={handleSignup}>회원가입</button>
-        <button onClick={handleFindId}>아이디 찾기</button>
-        <button onClick={handleFindPw}>비밀번호 찾기</button>
-      </div>
+      {/* ✅ type에 따라 다른 컴포넌트 렌더링 */}
+      {activeTab === "user" ? <LoginUser /> : <LoginEmployer />}
     </div>
   );
 };
