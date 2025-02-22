@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate 추가
+import { useNavigate, useLocation } from "react-router-dom"; // useNavigate 추가
 import styles from "./UserfitPage.module.css";
 
 const UserfiPage = () => {
+  const location = useLocation();
+  const responseData = location.state?.responseData;
   const [suitability, setSuitability] = useState(70); // 예제 값 (변경 가능)
   const navigate = useNavigate(); // 네비게이션 함수
 
@@ -17,6 +19,13 @@ const UserfiPage = () => {
 
   return (
     <div className={styles.container}>
+      <div>
+        {responseData? (
+          <pre>{JSON.stringify(responseData)}</pre>
+        ) : (
+          <p>데이터 없음</p>
+        )}
+      </div>
       <div className={styles.content}>
         <h1 className={styles.title}>대충 사이트 이름</h1>
         <p className={styles.completion}>

@@ -12,29 +12,37 @@ const UserPage = () => {
       alert("관심 직업을 선택해 주세요!");
       return;
     }
-
+  
     const payload = {
       jobObjective: selectedJob,
       lorem: textareaValue
     };
-
+  
+    console.log("📌 보낼 데이터:", payload); // ✅ 데이터 확인용 로그
+  
     try {
-      const response = await fetch("http://localhost:8000/user/validate_resume", {
+      const response = await fetch("http://127.0.0.1:5555/user/validate_resume", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
+  
+      console.log("📌 서버 응답 상태 코드:", response.status); // ✅ 응답 코드 확인 로그
+  
       if (!response.ok) {
-        console.error("데이터 전송 실패:", response.status);
-      } else {
-        const data = await response.json();
-        navigate("/user/fit",  { state: { responseData: data } });
+        console.error("❌ 데이터 전송 실패:", response.status);
+        return;
       }
+  
+      const data = await response.json();
+      console.log("📌 서버 응답 데이터:", data); // ✅ 서버 응답 데이터 확인
+  
+      navigate("/user/fit", { state: { responseData: data } });
     } catch (error) {
-      console.error("에러 발생:", error);
+      console.error("❌ 에러 발생:", error);
     }
   };
+  
 
   return (
     <div className={styles.container}>
@@ -42,8 +50,10 @@ const UserPage = () => {
       <section className={styles.textContainer}>
         <h1>일을 위해 찾아온 당신을 소개해 주세요</h1>
         <h6>
-          직무 적합성 분석을 원하는 직종을 선택하고 <br /> 자신의 경력, 자격증을 포함하여 본인의 자기소개서를 작성해 주면
-          <br /> 선택한 직업의 적합도 결과가 나와요!
+          직무 적합성 분석을 원하는 직종을 선택하고 <br />
+          자신의 경력, 자격증을 포함하여 본인의 자기소개서를 작성해 주면
+          <br />
+          선택한 직업의 적합도 결과가 나와요!
         </h6>
       </section>
 
@@ -79,6 +89,7 @@ const UserPage = () => {
           className={styles.textarea}
           value={textareaValue}
           onChange={(e) => setTextareaValue(e.target.value)}
+          placeholder="자기소개서를 입력하세요."
         ></textarea>
         <button onClick={handleSubmit}>입력하기</button>
       </section>
