@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserPage.module.css";
 
 const UserPage = () => {
-  const navigate = useNavigate(); // 네비게이션 함수
+  const navigate = useNavigate();
+  const [selectedJob, setSelectedJob] = useState("");
+  const [textareaValue, setTextareaValue] = useState("");
 
-  const handleSubmit = () => {
-    navigate("/user/fit"); // 버튼 클릭 시 /user/fit 페이지로 이동
+  const handleSubmit = async () => {
+    if (!selectedJob) {
+      alert("관심 직업을 선택해 주세요!");
+      return;
+    }
+
+    const payload = {
+      jobObjective: selectedJob,
+      lorem: textareaValue
+    };
+
+    try {
+      const response = await fetch("http://localhost:8000/user/validate_resume", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        console.error("데이터 전송 실패:", response.status);
+      } else {
+        const data = await response.json();
+        navigate("/user/fit",  { state: { responseData: data } });
+      }
+    } catch (error) {
+      console.error("에러 발생:", error);
+    }
   };
 
   return (
@@ -35,20 +62,24 @@ const UserPage = () => {
 
       {/* Input section */}
       <section className={styles.inputContainer}>
-        <select>
+        <select value={selectedJob} onChange={(e) => setSelectedJob(e.target.value)}>
           <option value="">직업 선택</option>
-          <option value="">서비스업</option>
-          <option value="">제조·화학</option>
-          <option value="">IT·웹·통신</option>
-          <option value="">은행·금융업</option>
-          <option value="">미디어·디자인</option>
-          <option value="">교육업</option>
-          <option value="">의료·제약·복지</option>
-          <option value="">판매·유통</option>
-          <option value="">건설업</option>
-          <option value="">기관·협회</option>
+          <option value="서비스업">서비스업</option>
+          <option value="제조·화학">제조·화학</option>
+          <option value="IT·웹·통신">IT·웹·통신</option>
+          <option value="은행·금융업">은행·금융업</option>
+          <option value="미디어·디자인">미디어·디자인</option>
+          <option value="교육업">교육업</option>
+          <option value="의료·제약·복지">의료·제약·복지</option>
+          <option value="판매·유통">판매·유통</option>
+          <option value="건설업">건설업</option>
+          <option value="기관·협회">기관·협회</option>
         </select>
-        <textarea className={styles.textarea}></textarea>
+        <textarea
+          className={styles.textarea}
+          value={textareaValue}
+          onChange={(e) => setTextareaValue(e.target.value)}
+        ></textarea>
         <button onClick={handleSubmit}>입력하기</button>
       </section>
     </div>
