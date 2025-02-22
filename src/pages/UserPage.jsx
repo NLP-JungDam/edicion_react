@@ -21,7 +21,7 @@ const UserPage = () => {
     console.log("📌 보낼 데이터:", payload); // ✅ 데이터 확인용 로그
   
     try {
-      const response = await fetch("http://127.0.0.1:5555/user/validate_resume", {
+      const response = await fetch("http://172.20.10.2:5500/user/validate_resume", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
