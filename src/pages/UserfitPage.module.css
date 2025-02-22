@@ -1,73 +1,92 @@
 .container {
-    display: flex;
-    height: 100vh;
-    background-color: #f6f4f8;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .content {
-    text-align: center;
-    background-color: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 600px;
-  }
-  
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 3px solid #2c2c2c;
-  }
-  
-  .completion {
-    font-size: 16px;
-    margin-bottom: 20px;
-    color: #555;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .loading {
-    width: 16px;
-    height: 16px;
-    border: 3px solid #ccc;
-    border-top: 3px solid #8a64d6;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-right: 8px;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  .description {
-    background-color: #e8e6ed;
-    padding: 15px;
-    border-radius: 10px;
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .button {
-    background-color: #8a64d6;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .button:hover {
-    background-color: #754dbb;
-  }
-  
+  display: flex;
+  height: 100vh;
+  background-color: #f6f4f8;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  text-align: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #2c2c2c;
+}
+
+.completion {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading {
+  width: 16px;
+  height: 16px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #8a64d6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.description {
+  background-color: #e8e6ed;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.resumeBox {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.resumeTitle {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.resumeContent {
+  font-size: 14px;
+  white-space: pre-line;
+  color: #555;
+}
+
+.button {
+  background-color: #8a64d6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.button:hover {
+  background-color: #754dbb;
+}
