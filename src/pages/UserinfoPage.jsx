@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./UserinfoPage.module.css";
 
 function UserMyPage() {
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+
+    const url = `http://localhost:8080/user/${userId}`;
+
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("서버 통신 에러");
+        }
+        return res.json();
+      })
+      .then((data) => setUserInfo(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return(
     <div className={styles.container}>
       {/* 유저 정보 */}
       <section className={styles.infoSection}>
         <h1 className={styles.title}>내 정보</h1>
-        <h2 className={styles.name}>김사과</h2>
-        <p className={styles.email}>kdt@kdt.com</p>
+        <h2 className={styles.name}>
+          {userInfo ? userInfo.name : "로딩"}
+        </h2>
+        <p className={styles.email}>
+          {userInfo ? userInfo.email : "로딩"}
+        </p>
       </section>
 
       {/* 메뉴 리스트 */}
