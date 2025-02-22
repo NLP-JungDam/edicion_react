@@ -6,10 +6,16 @@ const UserPage = () => {
   const navigate = useNavigate();
   const [selectedJob, setSelectedJob] = useState("");
   const [textareaValue, setTextareaValue] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (!selectedJob) {
       alert("관심 직업을 선택해 주세요!");
+      return;
+    }
+
+    if (textareaValue.length < 200) {
+      alert("자기소개서 내용을 200자 이상 작성해야 합니다!");
       return;
     }
   
@@ -17,33 +23,37 @@ const UserPage = () => {
       jobObjective: selectedJob,
       lorem: textareaValue
     };
-  
-    console.log("📌 보낼 데이터:", payload); // ✅ 데이터 확인용 로그
+    setLoading(true);
+    // 데이터 확인용 로그
+    // console.log("보낼 데이터:", payload);
   
     try {
-      const response = await fetch("http://192.168.123.14:5500/user/validate_resume", {
+      const response = await fetch("http://localhost:5500/user/validate_resume", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
   
-      console.log("📌 서버 응답 상태 코드:", response.status); // ✅ 응답 코드 확인 로그
+      // 응답 코드 확인 로그
+      // console.log("서버 응답 상태 코드:", response.status);
   
       if (!response.ok) {
-        console.error("❌ 데이터 전송 실패:", response.status);
+        console.error("데이터 전송 실패:", response.status);
+        setLoading(false);
         return;
       }
   
       const data = await response.json();
-      console.log("📌 서버 응답 데이터:", data); // ✅ 서버 응답 데이터 확인
-  
+      // 서버 응답 데이터 확인 로그
+      // console.log("서버 응답 데이터:", data);
       navigate("/user/fit", { state: { responseData: data } });
     } catch (error) {
-      console.error("❌ 에러 발생:", error);
+      console.error("에러 발생:", error);
+    } finally {
+      setLoading(false);
     }
   };
   
-
   return (
     <div className={styles.container}>
       {/* 제목 텍스트 section */}
@@ -89,10 +99,16 @@ const UserPage = () => {
           className={styles.textarea}
           value={textareaValue}
           onChange={(e) => setTextareaValue(e.target.value)}
-          placeholder="자기소개서를 입력하세요."
+          placeholder="200자 이상의 자기소개서를 입력하세요."
         ></textarea>
         <button onClick={handleSubmit}>입력하기</button>
       </section>
+      {loading && (
+        <div className={styles.loadingContainer}>
+          <div className={styles.loadingSpinner}></div>
+          <p>적합성을 평가 중입니다! 잠시만 기다려 주세요.</p>
+        </div>
+      )}
     </div>
   );
 };
