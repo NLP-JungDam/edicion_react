@@ -42,6 +42,7 @@ const JobList = () => {
       .catch((err) => console.error("채용 공고 불러오기 실패:", err));
   }, [userId]);
 
+
   // 더보기 버튼 load
   const loadMoreJobs = () => {
     const newVisibleCount = visibleCount + 6;
@@ -54,12 +55,9 @@ const JobList = () => {
       setSelectedJobIndex(selectedJobIndex === index ? null : index);
   };
 
-  // 체크박스 state 변경
-  const handleCheckboxChange = (jobName) => {
+  const handleCheckboxChange = (jobId) => {
     setSelectedJobs((prev) =>
-      prev.includes(jobName)
-        ? prev.filter((name) => name !== jobName)
-        : [...prev, jobName]
+      prev.includes(jobId) ? prev.filter((id) => id !== jobId) : [...prev, jobId]
     );
   };
 
@@ -70,22 +68,77 @@ const JobList = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/job/apply", {
+      console.log("디버깅 1")
+
+      // 유저 정보 불러오기(lorem, preferred)
+      const userResponse = await fetch(`http://localhost:8080/job/info/${userId}`);
+
+      if(!userResponse) {
+        console.error("lorem 불러오기 실패");
+        return;
+      }
+
+      const userInfo = await userResponse.json();
+      const { lorem } = userInfo
+      console.log("사용자 lorem", lorem);
+
+      // { job._id : preferred } 형태로 바꾸기
+      const jobPreferredMap = {};
+      selectedJobs.forEach((jobId) => {
+        const job = jobs.find((job) => job._id === jobId);
+        if (job) {
+          jobPreferredMap[jobId] = job.preferred || null;
+        }
+      });
+
+      console.log("Job Preferred 변환 값 확인", jobPreferredMap);
+
+      // similarity 모델 호출
+      const fastApiRequestBody = {
+        lorem,
+        jobs: jobPreferredMap
+      };
+
+      const similarityResponse = await fetch("http://127.0.0.1:5500/employer/similarity", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fastApiRequestBody)
+      });
+
+      if(!similarityResponse.ok) {
+        console.error("FastAPI 호출 실패");
+        return;
+      }
+
+      const similarityData = await similarityResponse.json();
+      console.log("모델 res 값", similarityData);
+
+      const applicantsData = Object.keys(similarityData).map((jobId) => ({
+        jobId,
+        applicants: { userId, fitness: similarityData[jobId] },
+      }));
+
+      console.log("뭔 값?", applicantsData);
+
+      // 이력서 제출 API
+      const applyResponse = await fetch("http://localhost:8080/job/apply", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           userId,
-          jobIds: selectedJobs,
+          applicantsData,
         }),
       });
 
-      if (response.ok) {
-        setIsModalOpen(true);
-      } else {
+      if (!applyResponse.ok) {
         console.error("이력서 제출 실패");
+        return;
       }
+
+      console.log("이력서 제출 성공")
+        setIsModalOpen(true);
     } catch (error) {
       console.error("이력서 제출 중 오류 발생", error);
     }
