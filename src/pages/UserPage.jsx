@@ -13,7 +13,7 @@ const UserPage = () => {
       alert("관심 직업을 선택해 주세요!");
       return;
     }
-
+  
     if (textareaValue.length < 200) {
       alert("자기소개서 내용을 200자 이상 작성해야 합니다!");
       return;
@@ -24,8 +24,6 @@ const UserPage = () => {
       lorem: textareaValue
     };
     setLoading(true);
-    // 데이터 확인용 로그
-    // console.log("보낼 데이터:", payload);
   
     try {
       const response = await fetch("http://localhost:5500/user/validate_resume", {
@@ -34,9 +32,6 @@ const UserPage = () => {
         body: JSON.stringify(payload),
       });
   
-      // 응답 코드 확인 로그
-      // console.log("서버 응답 상태 코드:", response.status);
-  
       if (!response.ok) {
         console.error("데이터 전송 실패:", response.status);
         setLoading(false);
@@ -44,9 +39,8 @@ const UserPage = () => {
       }
   
       const data = await response.json();
-      // 서버 응답 데이터 확인 로그
-      // console.log("서버 응답 데이터:", data);
-      navigate("/user/fit", { state: { responseData: data } });
+      console.log(data)
+      navigate("/user/fit", { state: { responseData: data, selectedJob } });
     } catch (error) {
       console.error("에러 발생:", error);
     } finally {

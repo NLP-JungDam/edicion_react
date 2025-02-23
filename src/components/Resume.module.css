@@ -54,7 +54,22 @@
     outline: none;
   }
   
-  .inputField:focus, .textareaField:focus {
-    border: 1px solid #6a5acd;
-  }
-  
+/* ✅ 자기소개서 입력창 */
+.textareaField {
+  width: 100%;
+  min-height: 120px; /* 최소 높이 설정 */
+  height: auto; /* 자동 조절 */
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  line-height: 1.5;
+  transition: height 0.2s ease-in-out; /* 높이 변화 애니메이션 */
+  overflow-y: hidden; /* 스크롤바 숨기기 */
+}
+
+/* ✅ 입력 필드 (공통) */
+.inputField:focus, .textareaField:focus {
+  border: 1px solid #6a5acd;
+}
