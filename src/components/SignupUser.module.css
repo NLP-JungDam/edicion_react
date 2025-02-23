@@ -3,29 +3,40 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #f9f9f9;
+    padding: 20px; /* 🔹 모바일 화면에서도 자연스럽게 보이도록 */
 }
 
 .formWrapper {
-    width: 420px;
+    width: 100%;
+    max-width: 600px; /* 🔹 살짝 넓혀서 입력창 간격 조정 */
     background: white;
-    padding: 30px;
-    border-radius: 10px;
+    padding: 40px; /* 🔹 내부 여백 조정 */
+    border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
 .formTitle {
-    padding: 12px;
+    font-size: 22px;
+    font-weight: bold;
     margin-bottom: 20px;
-    border-radius: 8px;
-    font-size: 20px;
 }
 
 .inputField {
-    width: 100%;
-    max-width: 350px;
+    width: 95%;
     padding: 12px;
-    margin: 10px 0;
+    margin: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.inputFields {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
@@ -38,10 +49,22 @@
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
+/* 🔹 생년월일 입력 */
+.birthInputContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+}
+
+.birthInputContainer .inputField {
+    width: 30%;
+}
+
+/* 🔹 회원가입 버튼 */
 .submitButton {
     width: 100%;
-    max-width: 350px;
-    padding: 12px;
+    padding: 14px;
     background-color: black;
     border: none;
     border-radius: 5px;
@@ -57,4 +80,110 @@
 
 .submitButton:active {
     background-color: #222;
+}
+
+/* 🔹 자격증 및 경력 섹션 */
+.dynamicSection {
+    margin-top: 20px;
+    text-align: left;
+    width: 95%;
+}
+
+/* 🔹 자격증 및 경력 제목 + 버튼 */
+.dynamicTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* 🔹 입력 필드 배경 스타일 통일 */
+.dynamicItem {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #f8f8f8; /* 🔹 연한 회색 배경 */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* 🔹 자격증 & 경력 입력 필드 정렬 */
+.dynamicInputs {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.dynamicInputs .inputField {
+    width: calc(50% - 5px);
+}
+
+/* 🔹 경력 입력 필드 레이아웃 */
+.historyInputs {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+}
+
+.historyInputs .inputField {
+    flex: 1;
+}
+
+/* 🔹 경력 설명 textarea */
+.dynamicItem textarea {
+    width: 95%;
+    min-height: 120px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+/* 🔹 버튼 컨테이너 정렬 */
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+/* 🔹 추가/삭제 버튼 스타일 */
+.smallButton {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 32px; /* 🔹 버튼 크기 최소 유지 */
+}
+
+.smallButton:hover {
+    background: #222;
+}
+
+.removeButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 32px;
+}
+
+.removeButton:hover {
+    background-color: darkred;
 }

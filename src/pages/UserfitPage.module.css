@@ -9,84 +9,134 @@
 .content {
   text-align: center;
   background-color: white;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 600px;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  width: 900px; /* ✅ 기존보다 넓게 변경 */
+  max-width: 95%;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   margin-bottom: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   border-bottom: 3px solid #2c2c2c;
 }
 
-.completion {
-  font-size: 16px;
-  margin-bottom: 20px;
-  color: #555;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.chartContainer {
+  width: 280px; /* ✅ 차트도 조금 확대 */
+  margin: 20px auto;
 }
 
-.loading {
-  width: 16px;
-  height: 16px;
-  border: 3px solid #ccc;
-  border-top: 3px solid #8a64d6;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-right: 8px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.chartText {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 12px;
 }
 
 .description {
   background-color: #e8e6ed;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
   text-align: center;
   margin-bottom: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ✅ 탭 스타일 - 가로 공간 확장 */
+.tabContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  border-bottom: 3px solid #ddd;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  padding: 12px 25px;
+  cursor: pointer;
+  color: #777;
+}
+
+.tabButton.active {
+  font-weight: bold;
+  color: black;
+  border-bottom: 3px solid #8a64d6;
 }
 
 .resumeBox {
   background: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
+  padding: 20px;
+  border-radius: 10px;
   text-align: left;
-  margin-bottom: 20px;
+  width: 85%; /* ✅ 가로폭 확장 */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .resumeTitle {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #333;
 }
 
 .resumeContent {
-  font-size: 14px;
+  font-size: 16px;
   white-space: pre-line;
   color: #555;
 }
 
-.button {
+/* ✅ 버튼 컨테이너 - 가로 정렬 */
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* ✅ 버튼 간격 추가 */
+  margin-top: 25px;
+}
+
+/* ✅ "이력서 작성하러 가기" 버튼 스타일 */
+.buttonPrimary {
   background-color: #8a64d6;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 25px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  flex: 1; /* ✅ 두 버튼 크기 동일하게 */
+  max-width: 220px;
+  text-align: center;
 }
 
-.button:hover {
+.buttonPrimary:hover {
   background-color: #754dbb;
 }
+
+/* ✅ "다시 작성하기" 버튼 스타일 */
+.buttonSecondary {
+  background-color: #d6d6d6;
+  color: #333;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1; /* ✅ 두 버튼 크기 동일하게 */
+  max-width: 220px;
+  text-align: center;
+}
+
+.buttonSecondary:hover {
+  background-color: #b0b0b0;
+}
+
