@@ -16,12 +16,19 @@ const UserfitPage = () => {
   const [recommendedResume, setRecommendedResume] = useState("추천 자기소개서가 없습니다.");
   const [jobScores, setJobScores] = useState({});
   const [activeTab, setActiveTab] = useState("userInput");
+  const [showRecommendation, setShowRecommendation] = useState(true); // ✅ 75% 이하인지 확인
 
   useEffect(() => {
     if (responseData) {
       setUserInput(responseData.lorem || "입력된 자기소개서가 없습니다.");
       setRecommendedResume(responseData.resume || "추천 자기소개서가 없습니다.");
       setJobScores(responseData.total_score || {});
+
+      // ✅ 선택된 직업 점수가 75% 미만이면 추천 자기소개서 및 버튼 숨기기
+      const selectedJobScore = responseData.total_score?.[selectedJob] || 0;
+      if (selectedJobScore < 75) {
+        setShowRecommendation(false);
+      }
     }
   }, [responseData, selectedJob]);
 
@@ -89,21 +96,23 @@ const UserfitPage = () => {
       <div className={styles.content}>
         <h1 className={styles.title}>직무 적합성 분석 결과</h1>
 
-        {/* ✅ 탭 UI */}
-        <div className={styles.tabContainer}>
-          <button
-            className={`${styles.tabButton} ${activeTab === "userInput" ? styles.active : ""}`}
-            onClick={() => setActiveTab("userInput")}
-          >
-            내가 작성한 자기소개서
-          </button>
-          <button
-            className={`${styles.tabButton} ${activeTab === "recommended" ? styles.active : ""}`}
-            onClick={() => setActiveTab("recommended")}
-          >
-            추천 자기소개서
-          </button>
-        </div>
+        {/* ✅ 탭 UI (75% 이상일 때만 보이도록) */}
+        {showRecommendation && (
+          <div className={styles.tabContainer}>
+            <button
+              className={`${styles.tabButton} ${activeTab === "userInput" ? styles.active : ""}`}
+              onClick={() => setActiveTab("userInput")}
+            >
+              내가 작성한 자기소개서
+            </button>
+            <button
+              className={`${styles.tabButton} ${activeTab === "recommended" ? styles.active : ""}`}
+              onClick={() => setActiveTab("recommended")}
+            >
+              추천 자기소개서
+            </button>
+          </div>
+        )}
 
         {/* ✅ 자기소개서 표시 */}
         <div className={styles.resumeBox}>
@@ -113,10 +122,12 @@ const UserfitPage = () => {
               <p className={styles.resumeContent}>{userInput}</p>
             </>
           ) : (
-            <>
-              <h2 className={styles.resumeTitle}>📄 추천 자기소개서</h2>
-              <p className={styles.resumeContent}>{recommendedResume}</p>
-            </>
+            showRecommendation && (
+              <>
+                <h2 className={styles.resumeTitle}>📄 추천 자기소개서</h2>
+                <p className={styles.resumeContent}>{recommendedResume}</p>
+              </>
+            )
           )}
         </div>
 
@@ -160,14 +171,16 @@ const UserfitPage = () => {
           />
         </div>
 
-        {/* ✅ 버튼 */}
+        {/* ✅ 버튼 (75% 이상일 때만 '이력서 작성하러 가기' 버튼 보이도록) */}
         <div className={styles.buttonContainer}>
           <button className={styles.buttonSecondary} onClick={() => navigate(-1)}>
             다시 작성하기
           </button>
-          <button className={styles.buttonPrimary} onClick={handleSaveToDB}>
-            이력서 작성하러 가기
-          </button>
+          {showRecommendation && (
+            <button className={styles.buttonPrimary} onClick={handleSaveToDB}>
+              이력서 작성하러 가기
+            </button>
+          )}
         </div>
       </div>
     </div>
