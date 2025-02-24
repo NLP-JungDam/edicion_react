@@ -19,7 +19,15 @@ const ApplicantsPage = () => {
       if (!response.ok) throw new Error("지원자 데이터를 불러오는 데 실패했습니다.");
 
       const data = await response.json();
-      setApplicants(data); // 지원자 목록 업데이트
+
+      // 데이터 정리: user가 존재하는 경우만 필터링하고, fitness 값을 함께 저장
+      const processedApplicants = data.data
+      .filter(applicant => applicant.user) // user 정보가 있는 경우만 사용
+      .map(applicant => ({
+        ...applicant.user, // user 정보 저장
+        fitness: applicant.fitness // fitness 추가
+      }));
+      setApplicants(processedApplicants);
     } catch (error) {
       console.error("지원자 목록 조회 오류:", error);
     }
