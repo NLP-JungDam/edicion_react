@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import styles from "./UserfitPage.module.css";
@@ -16,7 +17,8 @@ const UserfitPage = () => {
   const [recommendedResume, setRecommendedResume] = useState("추천 자기소개서가 없습니다.");
   const [jobScores, setJobScores] = useState({});
   const [activeTab, setActiveTab] = useState("userInput");
-  const [showRecommendation, setShowRecommendation] = useState(true); // ✅ 75% 이하인지 확인
+  const [showRecommendation, setShowRecommendation] = useState(true);
+  const [lowestJobStudy, setLowestJobStudy] = useState(""); // ✅ 75% 미만 시 study 저장
 
   useEffect(() => {
     if (responseData) {
@@ -24,15 +26,18 @@ const UserfitPage = () => {
       setRecommendedResume(responseData.resume || "추천 자기소개서가 없습니다.");
       setJobScores(responseData.total_score || {});
 
-      // ✅ 선택된 직업 점수가 75% 미만이면 추천 자기소개서 및 버튼 숨기기
+      // ✅ 선택한 직업의 점수 확인
       const selectedJobScore = responseData.total_score?.[selectedJob] || 0;
+
+      // ✅ 선택한 직업 점수가 75% 미만이면 study 값 표시
       if (selectedJobScore < 75) {
         setShowRecommendation(false);
+        setLowestJobStudy(responseData.study || "추천 학습 방법이 제공되지 않았습니다.");
       }
     }
   }, [responseData, selectedJob]);
 
-  // ✅ 내가 선택한 직업을 제외하고 가장 높은 점수를 받은 직업 1개 찾기
+  // ✅ 선택한 직업을 제외한 가장 높은 점수의 직업 찾기
   const filteredScores = { ...jobScores };
   delete filteredScores[selectedJob]; // 내가 선택한 직업 제거
 
@@ -48,11 +53,11 @@ const UserfitPage = () => {
     return acc;
   }, {});
 
-  // ✅ 막대 그래프 색상 동적 설정
+  // ✅ 막대 그래프 색상 설정
   const barColors = Object.keys(normalizedScores).map((job) => {
-    if (job === selectedJob) return "rgba(255, 99, 132, 0.8)"; // ✅ 내가 선택한 직업 (핑크)
-    if (job === topJob) return "rgba(138, 100, 214, 0.8)"; // ✅ 추천된 직업 (보라색, 1개만)
-    return "rgba(200, 200, 200, 0.8)"; // ✅ 기타 (회색)
+    if (job === selectedJob) return "rgba(255, 99, 132, 0.8)"; // 내가 선택한 직업 (핑크)
+    if (job === topJob) return "rgba(138, 100, 214, 0.8)"; // 추천된 직업 (보라색)
+    return "rgba(200, 200, 200, 0.8)"; // 기타 (회색)
   });
 
   // ✅ 이력서 저장 함수
@@ -96,41 +101,25 @@ const UserfitPage = () => {
       <div className={styles.content}>
         <h1 className={styles.title}>직무 적합성 분석 결과</h1>
 
-        {/* ✅ 탭 UI (75% 이상일 때만 보이도록) */}
-        {showRecommendation && (
-          <div className={styles.tabContainer}>
-            <button
-              className={`${styles.tabButton} ${activeTab === "userInput" ? styles.active : ""}`}
-              onClick={() => setActiveTab("userInput")}
-            >
-              내가 작성한 자기소개서
-            </button>
-            <button
-              className={`${styles.tabButton} ${activeTab === "recommended" ? styles.active : ""}`}
-              onClick={() => setActiveTab("recommended")}
-            >
-              추천 자기소개서
-            </button>
-          </div>
-        )}
-
-        {/* ✅ 자기소개서 표시 */}
-        <div className={styles.resumeBox}>
-          {activeTab === "userInput" ? (
-            <>
-              <h2 className={styles.resumeTitle}>📄 내가 작성한 자기소개서</h2>
-              <p className={styles.resumeContent}>{userInput}</p>
-            </>
-          ) : (
-            showRecommendation && (
-              <>
-                <h2 className={styles.resumeTitle}>📄 추천 자기소개서</h2>
-                <p className={styles.resumeContent}>{recommendedResume}</p>
-              </>
-            )
+          {/* ✅ 선택한 직업의 적합도가 75% 미만이면 study 값 표시 */}
+          {!showRecommendation && (
+            <div className={styles.studyContainer}>
+              <h2 className={styles.warningTitle}>📉 선택한 직업의 적합도가 낮습니다.</h2>
+              <p className={styles.warningText}>
+                선택한 "{selectedJob}" 직업의 적합도가 낮습니다. 아래의 학습 방법을 참고하여 개선해 보세요.
+              </p>
+              <div className={styles.studyBox}>
+                <h3 className={styles.studyTitle}>🔍 추천 학습 방법</h3>
+                <ReactMarkdown
+                  components={{
+                    p: ({ node, ...props }) => <p className={styles.studyContent} {...props} />,
+                  }}
+                >
+                  {lowestJobStudy}
+                </ReactMarkdown>
+              </div>
+            </div>
           )}
-        </div>
-
         {/* ✅ 직무 적합도 막대 그래프 */}
         <div className={styles.barChartContainer}>
           <h2 className={styles.subTitle}>직무별 적합도 비교</h2>
@@ -155,20 +144,14 @@ const UserfitPage = () => {
                   },
                 },
               },
-              plugins: {
-                legend: {
-                  display: true,
-                  labels: {
-                    generateLabels: (chart) => [
-                      { text: "당신이 선택한 직업", fillStyle: "rgba(255, 99, 132, 0.8)" },
-                      { text: "추천된 직업 (1개)", fillStyle: "rgba(138, 100, 214, 0.8)" },
-                      { text: "기타", fillStyle: "rgba(200, 200, 200, 0.8)" },
-                    ],
-                  },
-                },
-              },
             }}
           />
+        </div>
+
+        {/* ✅ 자기소개서 표시 */}
+        <div className={styles.resumeBox}>
+          <h2 className={styles.resumeTitle}>📄 내가 작성한 자기소개서</h2>
+          <p className={styles.resumeContent}>{userInput}</p>
         </div>
 
         {/* ✅ 버튼 (75% 이상일 때만 '이력서 작성하러 가기' 버튼 보이도록) */}
