@@ -1,8 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./UserinfoPage.module.css";
 
 function UserMyPage() {
   const [userInfo, setUserInfo] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const confirmLogout = window.confirm("로그아웃 하시겠습니까?");
+
+    if (confirmLogout) {
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    navigate("/");
+    }
+  };
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -40,7 +54,7 @@ function UserMyPage() {
         <div className={styles.menuItem}>내 이력서 확인하기</div>
         <div className={styles.menuItem}>내 지원 현황 확인가기</div>
         <div className={styles.btnBox}>
-          <button className={styles.button}>로그아웃</button>
+          <button className={styles.button} onClick={handleLogout}>로그아웃</button>
           <button className={styles.button}>탈퇴하기</button>
         </div>
       </section>
