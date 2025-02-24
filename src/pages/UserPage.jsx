@@ -1,110 +1,190 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./UserPage.module.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Bar } from "react-chartjs-2";
+import "chart.js/auto";
+import styles from "./UserfitPage.module.css";
 
-const UserPage = () => {
+const UserfitPage = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const [selectedJob, setSelectedJob] = useState("");
-  const [textareaValue, setTextareaValue] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async () => {
-    if (!selectedJob) {
-      alert("관심 직업을 선택해 주세요!");
-      return;
+  // ✅ `UserPage`에서 전달된 데이터 가져오기
+  const { responseData, selectedJob } = location.state || {};
+
+  // ✅ 상태 변수 설정
+  const [userInput, setUserInput] = useState("입력된 자기소개서가 없습니다.");
+  const [recommendedResume, setRecommendedResume] = useState("추천 자기소개서가 없습니다.");
+  const [jobScores, setJobScores] = useState({});
+  const [activeTab, setActiveTab] = useState("userInput");
+  const [showRecommendation, setShowRecommendation] = useState(true); // ✅ 75% 이하인지 확인
+
+  useEffect(() => {
+    if (responseData) {
+      setUserInput(responseData.lorem || "입력된 자기소개서가 없습니다.");
+      setRecommendedResume(responseData.resume || "추천 자기소개서가 없습니다.");
+      setJobScores(responseData.total_score || {});
+
+      // ✅ 선택된 직업 점수가 75% 미만이면 추천 자기소개서 및 버튼 숨기기
+      const selectedJobScore = responseData.total_score?.[selectedJob] || 0;
+      if (selectedJobScore < 75) {
+        setShowRecommendation(false);
+      }
     }
-  
-    if (textareaValue.length < 200) {
-      alert("자기소개서 내용을 200자 이상 작성해야 합니다!");
-      return;
-    }
-  
-    const payload = {
-      jobObjective: selectedJob,
-      lorem: textareaValue
-    };
-    setLoading(true);
-  
+  }, [responseData, selectedJob]);
+
+  // ✅ 내가 선택한 직업을 제외하고 가장 높은 점수를 받은 직업 1개 찾기
+  const filteredScores = { ...jobScores };
+  delete filteredScores[selectedJob]; // 내가 선택한 직업 제거
+
+  const topJob = Object.entries(filteredScores)
+    .sort((a, b) => b[1] - a[1]) // 점수 내림차순 정렬
+    .slice(0, 1) // 상위 1개 선택
+    .map(([job]) => job)[0]; // 직업명만 가져오기
+
+  // ✅ 전체 직업 적합도를 100% 기준으로 정규화
+  const maxScore = Math.max(...Object.values(jobScores), 100);
+  const normalizedScores = Object.keys(jobScores).reduce((acc, job) => {
+    acc[job] = (jobScores[job] / maxScore) * 100;
+    return acc;
+  }, {});
+
+  // ✅ 막대 그래프 색상 동적 설정
+  const barColors = Object.keys(normalizedScores).map((job) => {
+    if (job === selectedJob) return "rgba(255, 99, 132, 0.8)"; // ✅ 내가 선택한 직업 (핑크)
+    if (job === topJob) return "rgba(138, 100, 214, 0.8)"; // ✅ 추천된 직업 (보라색, 1개만)
+    return "rgba(200, 200, 200, 0.8)"; // ✅ 기타 (회색)
+  });
+
+  // ✅ 이력서 저장 함수
+  const handleSaveToDB = async () => {
     try {
-      const response = await fetch("http://localhost:5500/user/validate_resume", {
+      const userId = localStorage.getItem("userId");
+      if (!userId) {
+        alert("로그인이 필요합니다.");
+        return;
+      }
+
+      const payload = {
+        userId,
+        jobObjective: selectedJob,
+        lorem: userInput,
+        resume: recommendedResume,
+      };
+
+      console.log("📌 저장할 데이터:", payload);
+
+      const response = await fetch("http://localhost:8080/api/saveResume", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-  
+
       if (!response.ok) {
-        console.error("데이터 전송 실패:", response.status);
-        setLoading(false);
-        return;
+        throw new Error("서버 응답 실패");
       }
-  
-      const data = await response.json();
-      console.log(data)
-      navigate("/user/fit", { state: { responseData: data, selectedJob } });
+
+      alert("이력서가 성공적으로 저장되었습니다!");
+      navigate("/user/resume");
     } catch (error) {
-      console.error("에러 발생:", error);
-    } finally {
-      setLoading(false);
+      console.error("❌ 이력서 저장 중 오류 발생:", error);
+      alert("이력서 저장에 실패했습니다.");
     }
   };
-  
+
   return (
     <div className={styles.container}>
-      {/* 제목 텍스트 section */}
-      <section className={styles.textContainer}>
-        <h1>일을 위해 찾아온 당신을 소개해 주세요</h1>
-        <h6>
-          직무 적합성 분석을 원하는 직종을 선택하고 <br />
-          자신의 경력, 자격증을 포함하여 본인의 자기소개서를 작성해 주면
-          <br />
-          선택한 직업의 적합도 결과가 나와요!
-        </h6>
-      </section>
+      <div className={styles.content}>
+        <h1 className={styles.title}>직무 적합성 분석 결과</h1>
 
-      {/* 예시 블럭 section */}
-      <section className={styles.exContainer}>
-        <div className={styles.exBox}>
-          나는 어렸을 때부터 애를 키우기 시작해서 일 경험을 한번도 하지 못했어 근데 애를 키우게 되면서 가정적인 일에 자신있어졌어!
-        </div>
-        <div className={styles.exBox}>
-          저는 한국에 온 지 5년이 되었어요. 처음에는 말이 서툴러서 힘들었지만 지금은 한국어로 일상 대화도 할 수 있고, 간단한 문서도 읽을 수 있어요. 고향에서는 농사를 지었고, 손으로 하는 일에 익숙해요. 성실하게 일할 자신 있어요!
-        </div>
-        <div className={styles.exBox}>
-          혼자 아이를 키우면서 정말 많은 걸 배웠어요. 시간 관리, 경제적인 계획, 아이 교육까지 혼자 해내야 했거든요. 이런 경험 덕분에 책임감이 강하고, 문제 해결 능력이 좋아졌어요. 고객 응대나 관리 업무에 자신 있어요!
-        </div>
-      </section>
+        {/* ✅ 탭 UI (75% 이상일 때만 보이도록) */}
+        {showRecommendation && (
+          <div className={styles.tabContainer}>
+            <button
+              className={`${styles.tabButton} ${activeTab === "userInput" ? styles.active : ""}`}
+              onClick={() => setActiveTab("userInput")}
+            >
+              내가 작성한 자기소개서
+            </button>
+            <button
+              className={`${styles.tabButton} ${activeTab === "recommended" ? styles.active : ""}`}
+              onClick={() => setActiveTab("recommended")}
+            >
+              추천 자기소개서
+            </button>
+          </div>
+        )}
 
-      {/* Input section */}
-      <section className={styles.inputContainer}>
-        <select value={selectedJob} onChange={(e) => setSelectedJob(e.target.value)}>
-          <option value="">직업 선택</option>
-          <option value="서비스업">서비스업</option>
-          <option value="제조·화학">제조·화학</option>
-          <option value="IT·웹·통신">IT·웹·통신</option>
-          <option value="은행·금융업">은행·금융업</option>
-          <option value="미디어·디자인">미디어·디자인</option>
-          <option value="교육업">교육업</option>
-          <option value="의료·제약·복지">의료·제약·복지</option>
-          <option value="판매·유통">판매·유통</option>
-          <option value="건설업">건설업</option>
-          <option value="기관·협회">기관·협회</option>
-        </select>
-        <textarea
-          className={styles.textarea}
-          value={textareaValue}
-          onChange={(e) => setTextareaValue(e.target.value)}
-          placeholder="200자 이상의 자기소개서를 입력하세요."
-        ></textarea>
-        <button onClick={handleSubmit}>입력하기</button>
-      </section>
-      {loading && (
-        <div className={styles.loadingContainer}>
-          <div className={styles.loadingSpinner}></div>
-          <p>적합성을 평가 중입니다! 잠시만 기다려 주세요.</p>
+        {/* ✅ 자기소개서 표시 */}
+        <div className={styles.resumeBox}>
+          {activeTab === "userInput" ? (
+            <>
+              <h2 className={styles.resumeTitle}>📄 내가 작성한 자기소개서</h2>
+              <p className={styles.resumeContent}>{userInput}</p>
+            </>
+          ) : (
+            showRecommendation && (
+              <>
+                <h2 className={styles.resumeTitle}>📄 추천 자기소개서</h2>
+                <p className={styles.resumeContent}>{recommendedResume}</p>
+              </>
+            )
+          )}
         </div>
-      )}
+
+        {/* ✅ 직무 적합도 막대 그래프 */}
+        <div className={styles.barChartContainer}>
+          <h2 className={styles.subTitle}>직무별 적합도 비교</h2>
+          <Bar
+            data={{
+              labels: Object.keys(normalizedScores),
+              datasets: [
+                {
+                  label: "직무 적합도 (%)",
+                  data: Object.values(normalizedScores),
+                  backgroundColor: barColors,
+                },
+              ],
+            }}
+            options={{
+              scales: {
+                y: {
+                  min: 0,
+                  max: 100,
+                  ticks: {
+                    stepSize: 20,
+                  },
+                },
+              },
+              plugins: {
+                legend: {
+                  display: true,
+                  labels: {
+                    generateLabels: (chart) => [
+                      { text: "당신이 선택한 직업", fillStyle: "rgba(255, 99, 132, 0.8)" },
+                      { text: "추천된 직업 (1개)", fillStyle: "rgba(138, 100, 214, 0.8)" },
+                      { text: "기타", fillStyle: "rgba(200, 200, 200, 0.8)" },
+                    ],
+                  },
+                },
+              },
+            }}
+          />
+        </div>
+
+        {/* ✅ 버튼 (75% 이상일 때만 '이력서 작성하러 가기' 버튼 보이도록) */}
+        <div className={styles.buttonContainer}>
+          <button className={styles.buttonSecondary} onClick={() => navigate(-1)}>
+            다시 작성하기
+          </button>
+          {showRecommendation && (
+            <button className={styles.buttonPrimary} onClick={handleSaveToDB}>
+              이력서 작성하러 가기
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default UserPage;
+export default UserfitPage;
