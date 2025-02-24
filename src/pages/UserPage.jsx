@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./UserPage.module.css";
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import styles from './UserPage.module.css'
 
 const UserPage = () => {
   const navigate = useNavigate();
   const [selectedJob, setSelectedJob] = useState("");
   const [textareaValue, setTextareaValue] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (!selectedJob) {
@@ -14,40 +13,37 @@ const UserPage = () => {
       return;
     }
   
-    if (textareaValue.length < 200) {
-      alert("자기소개서 내용을 200자 이상 작성해야 합니다!");
-      return;
-    }
-  
     const payload = {
       jobObjective: selectedJob,
       lorem: textareaValue
     };
-    setLoading(true);
+  
+    console.log("📌 보낼 데이터:", payload); // ✅ 데이터 확인용 로그
   
     try {
-      const response = await fetch("http://localhost:5500/user/validate_resume", {
+      const response = await fetch("http://192.168.123.14:5500/user/validate_resume", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
   
+      console.log("📌 서버 응답 상태 코드:", response.status); // ✅ 응답 코드 확인 로그
+  
       if (!response.ok) {
-        console.error("데이터 전송 실패:", response.status);
-        setLoading(false);
+        console.error("❌ 데이터 전송 실패:", response.status);
         return;
       }
   
       const data = await response.json();
-      console.log(data)
-      navigate("/user/fit", { state: { responseData: data, selectedJob } });
+      console.log("📌 서버 응답 데이터:", data); // ✅ 서버 응답 데이터 확인
+  
+      navigate("/user/fit", { state: { responseData: data } });
     } catch (error) {
-      console.error("에러 발생:", error);
-    } finally {
-      setLoading(false);
+      console.error("❌ 에러 발생:", error);
     }
   };
   
+
   return (
     <div className={styles.container}>
       {/* 제목 텍스트 section */}
@@ -61,18 +57,18 @@ const UserPage = () => {
         </h6>
       </section>
 
-      {/* 예시 블럭 section */}
-      <section className={styles.exContainer}>
-        <div className={styles.exBox}>
-          나는 어렸을 때부터 애를 키우기 시작해서 일 경험을 한번도 하지 못했어 근데 애를 키우게 되면서 가정적인 일에 자신있어졌어!
-        </div>
-        <div className={styles.exBox}>
-          저는 한국에 온 지 5년이 되었어요. 처음에는 말이 서툴러서 힘들었지만 지금은 한국어로 일상 대화도 할 수 있고, 간단한 문서도 읽을 수 있어요. 고향에서는 농사를 지었고, 손으로 하는 일에 익숙해요. 성실하게 일할 자신 있어요!
-        </div>
-        <div className={styles.exBox}>
-          혼자 아이를 키우면서 정말 많은 걸 배웠어요. 시간 관리, 경제적인 계획, 아이 교육까지 혼자 해내야 했거든요. 이런 경험 덕분에 책임감이 강하고, 문제 해결 능력이 좋아졌어요. 고객 응대나 관리 업무에 자신 있어요!
-        </div>
-      </section>
+            {/* 예시 블럭 section */}
+            <section className={styles.exContainer}>
+                <div className={styles.exBox}>나는 어렸을 때부터 애를 키우기 시작해서 일 경험을 한번도 하지 못했어 근데 애를 키우게 되면서 가정적인 일에 자신있어졌어!</div>
+                <div className={styles.exBox}>
+                    저는 한국에 온 지 5년이 되었어요. 처음에는 말이 서툴러서 힘들었지만 지금은 한국어로 일상 대화도 할 수 있고, 간단한 문서도 읽을 수 있어요. 고향에서는 농사를 지었고, 손으로 하는 일에
+                    익숙해요. 성실하게 일할 자신 있어요!
+                </div>
+                <div className={styles.exBox}>
+                    혼자 아이를 키우면서 정말 많은 걸 배웠어요. 시간 관리, 경제적인 계획, 아이 교육까지 혼자 해내야 했거든요. 이런 경험 덕분에 책임감이 강하고, 문제 해결 능력이 좋아졌어요. 고객 응대나
+                    관리 업무에 자신 있어요!
+                </div>
+            </section>
 
       {/* Input section */}
       <section className={styles.inputContainer}>
@@ -93,18 +89,12 @@ const UserPage = () => {
           className={styles.textarea}
           value={textareaValue}
           onChange={(e) => setTextareaValue(e.target.value)}
-          placeholder="200자 이상의 자기소개서를 입력하세요."
+          placeholder="자기소개서를 입력하세요."
         ></textarea>
         <button onClick={handleSubmit}>입력하기</button>
       </section>
-      {loading && (
-        <div className={styles.loadingContainer}>
-          <div className={styles.loadingSpinner}></div>
-          <p>적합성을 평가 중입니다! 잠시만 기다려 주세요.</p>
-        </div>
-      )}
     </div>
   );
 };
 
-export default UserPage;
+export default UserPage
