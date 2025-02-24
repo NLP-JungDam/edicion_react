@@ -120,58 +120,75 @@ const handleChange = (e, field, index = null, subField = null) => {
     setIsEditing(false);
   };
 
-  // ✅ 저장 버튼 클릭 시 DB 업데이트
-  const handleSave = async () => {
-    if (!validateFields()) {
-      alert("입력되지 않은 항목이 있습니다. 확인해주세요.");
+// ✅ 저장 버튼 클릭 시 DB 업데이트 (talentedType 분석 추가)
+const handleSave = async () => {
+  if (!validateFields()) {
+    alert("입력되지 않은 항목이 있습니다. 확인해주세요.");
+    return;
+  }
+
+  try {
+    if (!userId) {
+      alert("로그인이 필요합니다.");
       return;
     }
+    console.log(resumeData.selfIntroduction)
 
-    try {
-      if (!userId) {
-        alert("로그인이 필요합니다.");
-        return;
-      }
+    // ✅ 1. talentedType 분석 요청
+    const talentedTypeResponse = await fetch(`http://localhost:5500/user/talentedType`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ resume: resumeData.selfIntroduction }),
+    });
 
-      const updatedData = {
-        userId,
-        name: resumeData.name,
-        birth: resumeData.birth,
-        email: resumeData.email,
-        phone: { number: resumeData.phone, verified: false },
-        education: resumeData.education.map((edu) => ({
-          graduated: edu.graduated,
-          department: edu.department,
-        })),
-        history: resumeData.experience.map((exp) => ({
-          title: exp.title,
-          date: exp.date,
-          content: exp.content,
-        })),
-        license: resumeData.certificates.map((cert) => ({
-          name: cert.name,
-          date: cert.date ? new Date(cert.date).toISOString() : null,
-        })),
-        resume: resumeData.selfIntroduction,
-      };
+    if (!talentedTypeResponse.ok) throw new Error("talentedType 분석 실패!");
 
-      const response = await fetch(`http://localhost:8080/user/resume`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "userid": userId,
-        },
-        body: JSON.stringify(updatedData),
-      });
+    const talentedTypeData = await talentedTypeResponse.json(); // ✅ 분석된 결과 받기
+    console.log("✅ talentedType 분석 결과:", talentedTypeData);
 
-      if (!response.ok) throw new Error("이력서 저장 실패!");
+    // ✅ 2. 유저 데이터 업데이트 (talentedType 포함)
+    const updatedData = {
+      userId,
+      name: resumeData.name,
+      birth: resumeData.birth,
+      email: resumeData.email,
+      phone: { number: resumeData.phone, verified: false },
+      education: resumeData.education.map((edu) => ({
+        graduated: edu.graduated,
+        department: edu.department,
+      })),
+      history: resumeData.experience.map((exp) => ({
+        title: exp.title,
+        date: exp.date,
+        content: exp.content,
+      })),
+      license: resumeData.certificates.map((cert) => ({
+        name: cert.name,
+        date: cert.date ? new Date(cert.date).toISOString() : null,
+      })),
+      resume: resumeData.selfIntroduction,
+      talentedType: talentedTypeData.talentedType, // ✅ 분석된 결과 저장
+    };
 
-      setIsModalOpen(true);
-    } catch (error) {
-      console.error("❌ 이력서 저장 중 오류 발생:", error);
-      alert("이력서를 저장하는 동안 오류가 발생했습니다.");
-    }
-  };
+    // ✅ 3. 유저 데이터 백엔드 저장
+    const response = await fetch(`http://localhost:8080/user/resume`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "userid": userId,
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) throw new Error("이력서 저장 실패!");
+
+    setIsModalOpen(true);
+  } catch (error) {
+    console.error("❌ 이력서 저장 중 오류 발생:", error);
+    alert("이력서를 저장하는 동안 오류가 발생했습니다.");
+  }
+};
+
 
   return (
     <div className={styles.container}>
