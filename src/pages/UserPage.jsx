@@ -45,6 +45,7 @@ const UserPage = () => {
 
             const data = await response.json()
             console.log(data)
+            console.log(selectedJob )
             navigate('/user/fit', { state: { responseData: data, selectedJob } })
         } catch (error) {
             console.error('에러 발생:', error)
