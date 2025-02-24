@@ -26,6 +26,9 @@ const ApplicantsList = ({ applicants, onSelectApplicant }) => {
             </div>
 
             <div className={styles.rightSection}>
+              <p>
+                적합도: {applicant.fitness}
+              </p>
               <button className={styles.viewButton} onClick={() => onSelectApplicant(applicant)}>
                 열람
               </button>
