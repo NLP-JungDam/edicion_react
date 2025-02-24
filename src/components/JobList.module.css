@@ -1,5 +1,5 @@
 .jobList {
-    width: 360px;
+    width: 500px;
     padding: 15px;
 }
 
@@ -73,5 +73,17 @@
     font-weight: bold;
     border: none;
     border-radius: 6px;
+    cursor: pointer;
+}
+
+.loadMoreButton {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    color: black;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid black;
     cursor: pointer;
 }

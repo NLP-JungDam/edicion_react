@@ -1,0 +1,62 @@
+.resumeContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+  
+.resumeWrapper {
+    width: 750px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+}
+
+.profileSection {
+    width: 30%;
+    background: #f4f4f4;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileImage {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.profileInfo p {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.detailsSection {
+    width: 70%;
+    padding: 20px;
+    border-left: 2px solid #ccc;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.resumeContainer p {
+    font-size: 14px;
+    color: #333;
+    padding-bottom: 5px;
+}
+
+.resumeContainer .h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
