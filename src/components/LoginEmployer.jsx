@@ -60,7 +60,7 @@ const LoginEmployer = () => {
         alert("로그인 성공!");
         localStorage.setItem("token", data.token); // ✅ 토큰 저장
         localStorage.setItem("businessNumber", formattedData.businessNumber);
-        navigate("/employer"); // ✅ 로그인 후 이동
+        navigate("/employer/applicants"); // ✅ 로그인 후 이동
       } else {
         alert(`로그인 실패: ${data.message}`);
       }

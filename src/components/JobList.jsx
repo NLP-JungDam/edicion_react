@@ -13,6 +13,7 @@ const JobList = () => {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false); 
   const [visibleCount, setVisibleCount] = useState(6);
+  const [loading, setLoading] = useState(false);
 
   // 유저 _id useState 처리
   useEffect(() => {
@@ -98,6 +99,7 @@ const JobList = () => {
         lorem,
         jobs: jobPreferredMap
       };
+      setLoading(true);
 
       const similarityResponse = await fetch("http://127.0.0.1:5500/employer/similarity", {
         method: "POST",
@@ -107,6 +109,7 @@ const JobList = () => {
 
       if(!similarityResponse.ok) {
         console.error("FastAPI 호출 실패");
+        setLoading(false);
         return;
       }
 
@@ -138,6 +141,7 @@ const JobList = () => {
       }
 
       console.log("이력서 제출 성공")
+        setLoading(false);
         setIsModalOpen(true);
     } catch (error) {
       console.error("이력서 제출 중 오류 발생", error);
@@ -180,6 +184,13 @@ const JobList = () => {
       <button className={styles.submitButton} onClick={handleSubmit}>
         이력서 제출하기
       </button>
+
+      {loading && (
+        <div className={styles.loadingContainer}>
+          <div className={styles.loadingSpinner}></div>
+          <p>적합성을 평가 중입니다! 잠시만 기다려 주세요.</p>
+        </div>
+      )}
 
       <Modal
         isOpen={isModalOpen}

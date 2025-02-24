@@ -68,7 +68,6 @@ function ProfileList({ selectedTalent }) {
                 <div key={applicant.userId} className={styles.card}>
                   <div className={styles.header}>
                     <h3 className={styles.name}>{applicant.name}</h3>
-                    <p className={styles.score}>30%</p>
                   </div>
                   <div className={styles.details}>
                     <p>생년월일: {new Date(applicant.birth).toLocaleDateString()}</p>
