@@ -115,6 +115,9 @@ const JobList = () => {
 
       const similarityData = await similarityResponse.json();
       console.log("모델 res 값", similarityData);
+      console.log("📌 Chroma 유사도:", similarityData.chroma_scores);
+      console.log("📌 GPT 유사도:", similarityData.gpt_scores);
+      console.log("📌 최종 점수:", similarityData.final_scores);
 
       const applicantsData = Object.keys(similarityData).map((jobId) => ({
         jobId,
