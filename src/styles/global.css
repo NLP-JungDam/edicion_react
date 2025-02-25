@@ -1,1 +1,20 @@
-/* 전역 css */
+:root {
+    /* 메인 컬러 */
+    --primary-color: #5a76a9;   /* 기본 연한 남색 */
+    --secondary-color: #809bc4; /* 서브 연한 남색 */
+    --accent-color: #c1d3f5;    /* 포인트 컬러 (부드러운 파스텔톤) */
+    
+    /* 텍스트 색상 */
+    --text-primary: #ffffff;    /* 기본 텍스트 */
+    --text-secondary: #e0e0e0;  /* 보조 텍스트 */
+    
+    /* 버튼 및 UI 요소 */
+    --button-bg: #ffffff;       /* 버튼 기본 배경 */
+    --button-text: #5a76a9;     /* 버튼 기본 텍스트 */
+    --button-border: #c1d3f5;   /* 버튼 테두리 */
+    --button-hover-bg: #5a76a9; /* 버튼 호버 배경 */
+    --button-hover-text: #ffffff; /* 버튼 호버 텍스트 */
+
+    /* 배경 */
+    --background-gradient: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
