@@ -17,11 +17,16 @@
 
 .jobContainer {
     display: flex;
-   align-items: center;
-   justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
     padding: 12px;
     cursor: pointer;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--button-border);
+    transition: background 0.3s ease;
+}
+
+.jobContainer:hover {
+    background: var(--accent-color);
 }
 
 .checkboxWrapper {
@@ -39,21 +44,21 @@
 .customCheckbox {
     width: 18px;
     height: 18px;
-    border: 2px solid #6B4C96;
+    border: 2px solid var(--primary-color);
     border-radius: 4px;
     display: inline-block;
-    margin: 0;
     position: relative;
+    background: var(--button-bg);
 }
 
 .jobContainer input:checked + .customCheckbox {
-    background-color: #6b4c966b;
-    border-color: #6B4C96;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .jobContainer input:checked + .customCheckbox::after {
     content: "✔";
-    color: white;
+    color: var(--text-primary);
     font-size: 14px;
     font-weight: bold;
     position: absolute;
@@ -62,30 +67,41 @@
     transform: translate(-50%, -50%);
 }
 
-.submitButton {
+/* ✅ 버튼 스타일 */
+.submitButton, .loadMoreButton {
     display: block;
     width: 100%;
-    padding: 10px 0;
+    padding: 12px 0;
     margin-top: 15px;
-    background: #6B4C96;
-    color: white;
     font-size: 16px;
     font-weight: bold;
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
+/* ✅ 이력서 제출 버튼 */
+.submitButton {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: 2px solid var(--button-border);
+}
+
+.submitButton:hover {
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
+}
+
+/* ✅ 더보기 버튼 */
 .loadMoreButton {
-    width: 100%;
-    padding: 10px 0;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
-    color: black;
-    font-size: 16px;
-    border: none;
-    border-bottom: 1px solid black;
-    cursor: pointer;
+    background: var(--secondary-color);
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--button-border);
+}
+
+.loadMoreButton:hover {
+    background: var(--primary-color);
 }
 
 .loadingContainer {

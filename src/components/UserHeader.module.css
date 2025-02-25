@@ -3,26 +3,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background: #f4f0f7;
-    border-bottom: 2px solid #ddd;
+    padding: 15px 20px;
+    background: var(--primary-color);
+    border-bottom: 3px solid var(--button-border);
     position: relative;
 }
 
 /* 로고 스타일 */
 .logo {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
 }
 
-.logoBlack {
-    color: black;
+.logoWhite {
+    color: var(--text-primary);
 }
 
-.logoOrange {
-    color: orange;
+.logoYellow {
+    color: black;
 }
 
 /* 오른쪽 설정 버튼 */
@@ -34,42 +34,59 @@
 /* 설정 아이콘 */
 .settingsIcon {
     font-size: 24px;
-    color: black;
+    color: var(--text-primary);
     cursor: pointer;
-    transition: 0.3s;
+    transition: color 0.3s ease;
 }
 
+/* 설정 아이콘 hover 효과 */
 .settingsIcon:hover {
-    color: orange;
+    color: #b0d0ff; /* 기존 --accent-color 보다 더 밝은 톤 사용 */
 }
 
 /* 드롭다운 메뉴 */
-.dropdown__menu {
+.dropdownMenu {
     position: absolute;
     top: 50px;
     right: 20px;
-    background: white;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    width: 140px;
+    background: rgba(40, 80, 120, 0.9); /* 기존 --secondary-color 보다 조금 더 어두운 톤 */
+    border: 2px solid var(--button-border);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    width: 150px;
     padding: 10px 0;
     display: flex;
     flex-direction: column;
+    z-index: 1000;
 }
 
 /* 드롭다운 메뉴 버튼 스타일 */
-.dropdown__menu button {
+.dropdownMenu button {
     background: none;
     border: none;
-    padding: 10px;
-    font-size: 14px;
+    padding: 12px;
+    font-size: 16px;
     text-align: left;
     cursor: pointer;
     width: 100%;
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* 드롭다운 메뉴 버튼 hover 효과 */
-.dropdown__menu button:hover {
-    background: #f0f0f0;
+.dropdownMenu button:hover {
+    background: #cde0ff; /* 기존 --accent-color 보다 더 밝은 블루 */
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+    .logo {
+        font-size: 22px;
+    }
+
+    .dropdownMenu {
+        width: 130px;
+    }
 }

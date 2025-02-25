@@ -8,9 +8,9 @@
 /* 기본 탭 버튼 스타일 */
 .tabButton {
     padding: 12px 20px;
-    border: 2px solid #6a5acd;
-    background-color: white;
-    color: #6a5acd;
+    border: 2px solid var(--button-border);
+    background-color: var(--button-bg);
+    color: var(--button-text);
     cursor: pointer;
     font-size: 17px;
     font-weight: bold;
@@ -21,8 +21,15 @@
 
 /* 활성화된 탭 스타일 */
 .active {
-    background-color: #6a5acd;
-    color: white;
-    border: 2px solid #6a5acd;
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    border: 2px solid var(--button-hover-bg);
     box-shadow: 3px 3px 8px rgba(125, 95, 255, 0.3);
+}
+
+/* 탭 버튼 hover 효과 */
+.tabButton:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    transform: scale(1.05);
 }

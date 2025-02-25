@@ -6,7 +6,7 @@ import styles from "./FindPwPage.module.css";
 const FindPwPage = ({ type }) => {
     return (
       <div className={styles.container}>
-        <h2>비밀번호 찾기</h2>
+        {/* <h2>비밀번호 찾기</h2> */}
         {type === "user" ? <FindPwUser /> : <FindPwEmployer />}
       </div>
     );

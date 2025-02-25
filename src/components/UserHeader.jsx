@@ -15,8 +15,8 @@ const UserHeader = () => {
     <header className={styles.header}>
       {/* 왼쪽 로고 */}
       <div className={styles.logo} onClick={() => navigate("/user")}>
-        <span className={styles.logoBlack}>Edi</span>
-        <span className={styles.logoOrange}>ción</span>
+        <span className={styles.logoWhite}>Edi</span>
+        <span className={styles.logoYellow}>ción</span>
       </div>
 
       {/* 오른쪽 설정 버튼 */}
@@ -26,7 +26,7 @@ const UserHeader = () => {
 
       {/* 드롭다운 메뉴 */}
       {menuOpen && (
-        <div className={styles.dropdown__menu}>
+        <div className={styles.dropdownMenu}>
           <button onClick={() => { navigate("/"); toggleMenu(); }}>메인</button>
           <button onClick={() => { navigate("/user/info"); toggleMenu(); }}>내 정보</button>
         </div>
