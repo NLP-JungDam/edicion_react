@@ -32,10 +32,12 @@ const UserPage = () => {
                 body: JSON.stringify(payload)
             })
 
-            // if (!response.verify) {
-            //     alert('자기소개서 형태를 갖춰야합니다!')
-            //     return
-            // }
+            const data = await response.json()
+
+            if (data.verify) {
+                alert('자기를 소개하는 글을 작성하셔야 합니다.')
+                return
+            }
 
             if (!response.ok) {
                 console.error('데이터 전송 실패:', response.status)
@@ -43,9 +45,9 @@ const UserPage = () => {
                 return
             }
 
-            const data = await response.json()
+            // const data = await response.json()
             console.log(data)
-            console.log(selectedJob )
+            console.log(selectedJob)
             navigate('/user/fit', { state: { responseData: data, selectedJob } })
         } catch (error) {
             console.error('에러 발생:', error)
