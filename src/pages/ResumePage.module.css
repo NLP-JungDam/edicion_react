@@ -33,7 +33,7 @@
 /* 제목 input (입사지원서) */
 .titleInput {
     text-align: center;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     border: none;
     outline: none;
@@ -42,19 +42,20 @@
     max-width: 400px;
 }
 
-/* 버튼 스타일 */
 .editButton, .saveButton {
-    background-color: #6A5ACD;
-    color: white;
-    border: none;
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: 2px solid var(--button-border);
     padding: 8px 16px;
     border-radius: 20px;
     cursor: pointer;
+    font-weight: bold;
     transition: 0.3s;
 }
 
 .editButton:hover, .saveButton:hover {
-    background-color: #5A4ACD;
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
 }
 
 /* 이력서 전체 크기 고정 */

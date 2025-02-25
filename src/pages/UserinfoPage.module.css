@@ -2,10 +2,13 @@
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
-    background-color: #F1EBF5;
+    background: var(--background-gradient);
     padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* 유저 정보 섹션 */
 .infoSection {
     text-align: left;
     margin-bottom: 20px;
@@ -14,21 +17,24 @@
 .title {
     font-size: 24px;
     font-weight: bold;
-    margin: 10px 0;
+    margin-bottom: 10px;
+    color: var(--text-primary);
 }
 
 .name {
     font-size: 18px;
     font-weight: bold;
     margin-top: 5px;
+    color: var(--text-primary);
 }
 
 .email {
     font-size: 14px;
-    color: #666;
+    color: var(--text-secondary);
     margin-top: 5px;
 }
 
+/* 메뉴 리스트 */
 .menuSection {
     display: flex;
     flex-direction: column;
@@ -37,21 +43,42 @@
 
 .menuItem {
     padding: 15px 0;
-    border-bottom: 1px solid #B39DDB;
+    border-bottom: 1px solid var(--button-border);
     font-size: 16px;
     cursor: pointer;
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* 메뉴 호버 효과 */
+.menuItem:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 버튼 박스 */
 .btnBox {
     display: flex;
     gap: 10px;
+    margin-top: 10px;
 }
 
+/* 버튼 스타일 */
 .button {
-    background-color: #B39DDB;
-    margin-top: 10px;
-    padding: 10px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    padding: 10px 16px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* 버튼 호버 효과 */
+.button:hover {
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
 }

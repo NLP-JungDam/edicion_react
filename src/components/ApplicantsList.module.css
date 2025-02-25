@@ -1,12 +1,14 @@
+/* 사이드바 (지원자 리스트) */
 .sidebar {
     width: 320px;
     height: 100vh;
-    background-color: #f4f0ff;
+    background: var(--background-gradient);
     padding: 20px;
     overflow-y: auto;
-    border-right: 2px solid #ccc;
+    border-right: 2px solid var(--button-border);
 }
 
+/* 지원자 카드 */
 .applicantCard {
     display: flex;
     justify-content: space-between;
@@ -14,10 +16,17 @@
     background-color: white;
     padding: 15px;
     margin-bottom: 15px;
-    min-width: 90px;
-    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
 }
 
+/* 카드 hover 효과 */
+.applicantCard:hover {
+    transform: translateY(-3px);
+}
+
+/* 왼쪽 지원자 정보 */
 .leftSection {
     display: flex;
     flex-direction: column;
@@ -25,6 +34,7 @@
     overflow: hidden;
 }
 
+/* 지원자 이름 + 성별 */
 .titleBox {
     margin-bottom: 5px;
 }
@@ -32,27 +42,28 @@
 .name {
     font-size: 18px;
     font-weight: bold;
+    color: var(--primary-color);
     margin: 0;
     padding-right: 10px;
 }
 
 .gender {
     font-size: 14px;
-    color: #555;
-    margin-top: 10px;
-    margin-bottom: 0;
+    color: var(--text-secondary);
 }
 
+/* 자격증 & 경력 정보 */
 .info {
     font-size: 14px;
-    color: gray;
+    color: var(--text-secondary);
     margin: 5px 0;
-    white-space: hidden;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 180px;
 }
 
+/* 오른쪽 적합도 & 버튼 */
 .rightSection {
     display: flex;
     flex-direction: column;
@@ -60,21 +71,60 @@
     width: 100px;
 }
 
+/* 적합도 스타일 */
+.fitness {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.fitness span {
+    font-size: 18px;
+    color: var(--button-hover-bg);
+}
+
+/* 열람 버튼 */
 .viewButton {
-    background-color: #6A5ACD;
-    color: white;
-    border: none;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 2px solid var(--button-border);
     padding: 8px 15px;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     margin-top: 8px;
     font-weight: bold;
+    transition: all 0.3s ease-in-out;
     width: 80px;
 }
 
+.viewButton:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+}
+
+/* 지원자가 없을 때 */
 .noApplicants {
     text-align: center;
-    color: gray;
+    color: var(--text-secondary);
     font-size: 16px;
     margin-top: 20px;
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-right: none;
+    }
+
+    .applicantCard {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rightSection {
+        width: 100%;
+        align-items: flex-start;
+    }
 }

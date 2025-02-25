@@ -1,9 +1,10 @@
 .container {
   display: flex;
-  height: 100vh;
-  background-color: #f6f4f8;
+  min-height: 100vh; 
+  height: auto;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* ✅ 최상단부터 시작하도록 변경 */
+  overflow-x: hidden;
 }
 
 .content {
@@ -14,8 +15,10 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
   width: 900px;
   max-width: 95%;
-  min-height: 90vh; /* ✅ 화면이 콘텐츠 크기에 맞게 자동으로 늘어나도록 설정 */
-  overflow: visible; /* ✅ 사이드바(스크롤바) 없애기 */
+  min-height: 90vh;
+  height: auto; /* ✅ 내용이 많아지면 자동 확장 */
+  overflow-y: auto; /* ✅ 내부 스크롤 가능하도록 설정 */
+  max-height: 100%;
 }
 
 /* ✅ 제목 스타일 */
@@ -24,40 +27,43 @@
   font-weight: bold;
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 3px solid #2c2c2c;
+  border-bottom: 3px solid var(--primary-color);
+  color: var(--text-primary);
 }
 
 /* ✅ 탭 스타일 */
 /* ✅ 탭 스타일 */
+/* ✅ 자기소개서 탭 스타일 */
 .tabContainer {
   display: flex;
   justify-content: center;
   gap: 40px;
   margin-top: 25px;
-  border-bottom: 3px solid #ddd;
+  border-bottom: 3px solid var(--button-border);
   width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* ✅ 탭 버튼 */
 .tabButton {
   background: none;
   border: none;
   font-size: 18px;
   padding: 12px 25px;
   cursor: pointer;
-  color: #777;
+  color: var(--text-secondary);
   transition: all 0.3s ease-in-out;
 }
 
 .tabButton:hover {
-  color: #333;
+  color: var(--text-primary);
 }
 
 .tabButton.active {
   font-weight: bold;
-  color: black;
-  border-bottom: 3px solid #8a64d6;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--primary-color);
 }
 
 /* ✅ 탭 내용 */
@@ -127,6 +133,7 @@
   margin-top: 25px;
 }
 
+/* ✅ 기본 버튼 스타일 */
 .buttonPrimary,
 .buttonSecondary {
   flex: 1;
@@ -137,24 +144,31 @@
   cursor: pointer;
   font-size: 16px;
   border: none;
+  font-weight: bold;
 }
 
+/* ✅ 주요 버튼 (이력서 작성 버튼) */
 .buttonPrimary {
-  background-color: #8a64d6;
-  color: white;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 2px solid var(--button-border);
 }
 
 .buttonPrimary:hover {
-  background-color: #754dbb;
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
 }
 
+/* ✅ 보조 버튼 (다시 작성 버튼) */
 .buttonSecondary {
-  background-color: #d6d6d6;
-  color: #333;
+  background: var(--secondary-color);
+  color: var(--text-primary);
+  border: 2px solid var(--button-border);
 }
 
 .buttonSecondary:hover {
-  background-color: #b0b0b0;
+  background: var(--primary-color);
+  color: var(--text-primary);
 }
 
 /* ✅ 학습 방법 (study) 컨테이너 */

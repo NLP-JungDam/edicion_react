@@ -15,8 +15,8 @@ const EmployerHeader = () => {
     <header className={styles.header}>
       {/* 왼쪽 로고 */}
       <div className={styles.logo} onClick={() => navigate("/employer/applicants")}>
-        <span className={styles.logoBlack}>Edi</span>
-        <span className={styles.logoOrange}>ción</span>
+        <span className={styles.logoWhite}>Edi</span>
+        <span className={styles.logoBlue}>ción</span>
       </div>
 
       {/* 중앙 버튼들 */}
@@ -36,9 +36,9 @@ const EmployerHeader = () => {
 
       {/* 드롭다운 메뉴 */}
       {menuOpen && (
-        <div className={styles.dropdown__menu}>
+        <div className={styles.dropdownMenu}>
           <button onClick={() => { navigate("/"); toggleMenu(); }}>메인</button>
-          <button onClick={() => { navigate("/"); toggleMenu(); }}>내 정보</button>
+          <button onClick={() => { navigate("/profile"); toggleMenu(); }}>내 정보</button>
         </div>
       )}
     </header>

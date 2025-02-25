@@ -1,55 +1,64 @@
+/* 전체 컨테이너 */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f9f9f9;
-    padding: 20px; /* 🔹 모바일 화면에서도 자연스럽게 보이도록 */
+    background: var(--background-gradient);
+    padding: 20px;
 }
 
+/* 폼 래퍼 */
 .formWrapper {
     width: 100%;
-    max-width: 600px; /* 🔹 살짝 넓혀서 입력창 간격 조정 */
+    max-width: 600px;
     background: white;
-    padding: 40px; /* 🔹 내부 여백 조정 */
+    padding: 40px;
     border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
+    border: 2px solid var(--button-border);
 }
 
+/* 제목 */
 .formTitle {
-    font-size: 22px;
+    font-size: 26px;
     font-weight: bold;
+    color: var(--primary-color);
     margin-bottom: 20px;
 }
 
+/* 입력 필드 */
 .inputField {
     width: 95%;
     padding: 12px;
     margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    background-color: #fff;
-}
-
-.inputFields {
-    width: 100%;
-    padding: 12px;
-    margin: 6px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    background-color: #fff;
+    border: 2px solid var(--button-border);
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: white;
+    color: black;
 }
 
 .inputField:focus {
     outline: none;
-    border-color: #000;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-color);
+    box-shadow: 0px 0px 5px rgba(193, 211, 245, 0.5);
 }
 
-/* 🔹 생년월일 입력 */
+/* 성별 선택 */
+.inputFields {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
+    border: 2px solid var(--button-border);
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: white;
+    color: black;
+}
+
+/* 생년월일 입력 */
 .birthInputContainer {
     display: flex;
     justify-content: space-between;
@@ -61,58 +70,58 @@
     width: 30%;
 }
 
-/* 🔹 회원가입 버튼 */
+/* 회원가입 버튼 */
 .submitButton {
     width: 100%;
     padding: 14px;
-    background-color: black;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
+    background-color: var(--button-bg);
+    border: 2px solid var(--button-border);
+    border-radius: 6px;
+    color: var(--button-text);
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
     margin-top: 15px;
+    transition: all 0.3s ease-in-out;
 }
 
 .submitButton:hover {
-    background-color: #333;
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    transform: scale(1.05);
 }
 
-.submitButton:active {
-    background-color: #222;
-}
-
-/* 🔹 자격증 및 경력 섹션 */
+/* 자격증 및 경력 섹션 */
 .dynamicSection {
     margin-top: 20px;
     text-align: left;
     width: 95%;
 }
 
-/* 🔹 자격증 및 경력 제목 + 버튼 */
+/* 자격증 및 경력 제목 + 버튼 */
 .dynamicTitle {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
-/* 🔹 입력 필드 배경 스타일 통일 */
+/* 입력 필드 배경 스타일 통일 */
 .dynamicItem {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: #f8f8f8; /* 🔹 연한 회색 배경 */
+    background-color: #f8f8f8;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 10px;
     width: 100%;
 }
 
-/* 🔹 자격증 & 경력 입력 필드 정렬 */
+/* 자격증 & 경력 입력 필드 정렬 */
 .dynamicInputs {
     display: flex;
     width: 100%;
@@ -123,7 +132,7 @@
     width: calc(50% - 5px);
 }
 
-/* 🔹 경력 입력 필드 레이아웃 */
+/* 경력 입력 필드 레이아웃 */
 .historyInputs {
     display: flex;
     flex-wrap: wrap;
@@ -135,55 +144,40 @@
     flex: 1;
 }
 
-/* 🔹 경력 설명 textarea */
+/* 경력 설명 textarea */
 .dynamicItem textarea {
     width: 95%;
     min-height: 120px;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
+    border: 2px solid var(--button-border);
+    border-radius: 6px;
+    font-size: 16px;
     resize: vertical;
 }
 
-/* 🔹 버튼 컨테이너 정렬 */
-.buttonContainer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    justify-content: flex-start;
-}
-
-/* 🔹 추가/삭제 버튼 스타일 */
+/* 추가/삭제 버튼 스타일 */
 .smallButton {
-    background: #444;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: 2px solid var(--button-border);
+    padding: 8px 12px;
+    border-radius: 6px;
     font-size: 14px;
     cursor: pointer;
-    min-width: 32px; /* 🔹 버튼 크기 최소 유지 */
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
 }
 
 .smallButton:hover {
-    background: #222;
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
 }
 
-.removeButton {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    min-width: 32px;
-}
-
-.removeButton:hover {
-    background-color: darkred;
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+    .formWrapper {
+        max-width: 90%;
+    }
 }

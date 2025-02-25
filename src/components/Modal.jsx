@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Modal.module.css";
 
 const Modal = ({ isOpen, onClose, message, buttonText, onConfirm }) => {
-  if (!isOpen) return null; // 모달이 열리지 않으면 아무것도 렌더링하지 않음
+  if (!isOpen) return null; 
 
   return (
     <div className={styles.modalOverlay}>
