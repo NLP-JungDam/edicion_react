@@ -104,48 +104,45 @@ const JobList = () => {
       const similarityResponse = await fetch("http://127.0.0.1:5500/employer/similarity", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fastApiRequestBody)
+        body: JSON.stringify(fastApiRequestBody),
       });
-
-      if(!similarityResponse.ok) {
+      
+      if (!similarityResponse.ok) {
         console.error("FastAPI 호출 실패");
         setLoading(false);
         return;
       }
-
+      
       const similarityData = await similarityResponse.json();
-      console.log("모델 res 값", similarityData);
-      console.log("📌 Chroma 유사도:", similarityData.chroma_scores);
-      console.log("📌 GPT 유사도:", similarityData.gpt_scores);
-      console.log("📌 최종 점수:", similarityData.final_scores);
-
-      const applicantsData = Object.keys(similarityData).map((jobId) => ({
-        jobId,
-        applicants: { userId, fitness: similarityData[jobId] },
+      console.log("최종 점수:", similarityData.final_scores);
+      
+      // `final_scores`에서 jobId만 추출하여 applicantsData 생성
+      const applicantsData = Object.entries(similarityData.final_scores).map(([jobId, score]) => ({
+        jobId, // MongoDB ObjectId 형식 유지
+        applicants: { userId, fitness: score },
       }));
-
-      console.log("뭔 값?", applicantsData);
-
-      // 이력서 제출 API
+      
+      console.log("변환된 applicantsData:", applicantsData);
+      
+      // 이력서 제출 API 호출
       const applyResponse = await fetch("http://localhost:8080/job/apply", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId,
           applicantsData,
         }),
       });
-
+      
       if (!applyResponse.ok) {
         console.error("이력서 제출 실패");
         return;
       }
-
-      console.log("이력서 제출 성공")
-        setLoading(false);
-        setIsModalOpen(true);
+      
+      console.log("이력서 제출 성공");
+      setLoading(false);
+      setIsModalOpen(true);
+      
     } catch (error) {
       console.error("이력서 제출 중 오류 발생", error);
     }
