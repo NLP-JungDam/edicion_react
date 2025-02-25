@@ -9,8 +9,11 @@ const ApplicantsList = ({ applicants, onSelectApplicant }) => {
         applicants.map((applicant) => (
           <div key={applicant.id} className={styles.applicantCard}>
             <div className={styles.leftSection}>
-              <p className={styles.name}>{applicant.name}</p>
-              <p className={styles.gender}>{applicant.gender}</p>
+              <div className={styles.titleBox}>
+                <sapn className={styles.name}>{applicant.name}</sapn>
+                <span className={styles.gender}>{applicant.gender}</span>
+              </div>
+              
               <p className={styles.info}>
                 자격증:{" "}
                 {applicant.license?.length > 0
@@ -20,7 +23,7 @@ const ApplicantsList = ({ applicants, onSelectApplicant }) => {
               <p className={styles.info}>
                 경력:{" "}
                 {applicant.history?.length > 0
-                  ? applicant.history.map((exp) => `${exp.title} (${exp.date})`).join(", ")
+                  ? applicant.history.map((exp) => `${exp.title}`).join(", ")
                   : "없음"}
               </p>
             </div>

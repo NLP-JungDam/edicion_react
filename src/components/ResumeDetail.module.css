@@ -2,9 +2,11 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding: 20px;
     background-color: #f8f8f8;
+    min-height: auto;
+    overflow-y: auto;
 }
   
 .resumeWrapper {

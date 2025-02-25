@@ -8,7 +8,10 @@ const MainPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>대충 사이트 이름</h1>
+      <div className={styles.logo}>
+        <span className={styles.logoBlack}>Edi</span>
+        <span className={styles.logoOrange}>ción</span>
+      </div>
       <div className={styles.buttonContainer}>
         <button className={styles.loginButton} onClick={() => handleNavigate("user")}>
           개인 회원 로그인

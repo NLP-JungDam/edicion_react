@@ -188,7 +188,7 @@ const JobList = () => {
       {loading && (
         <div className={styles.loadingContainer}>
           <div className={styles.loadingSpinner}></div>
-          <p>적합성을 평가 중입니다! 잠시만 기다려 주세요.</p>
+          <p>이력서 제출 중입니다! 잠시만 기다려 주세요.</p>
         </div>
       )}
 
