@@ -37,7 +37,7 @@ const LoginUser = () => {
         localStorage.setItem("username", data.username);
 
         // ✅ 로그인 성공 후 페이지 이동
-        navigate("/user");
+        navigate("/user/1");
       } else {
         // ✅ 실패 시 alert 메시지 표시
         alert(`로그인 실패: ${data.message}`);

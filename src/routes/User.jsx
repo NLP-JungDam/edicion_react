@@ -14,6 +14,7 @@ const User = () => {
       <UserHeader />
       <Routes>
         <Route path="/" element={<UserPage />} />
+        <Route path="/:categoryCode" element={<UserPage />} />
         <Route path="/fit" element={<UserfitPage />} />
         <Route path="/info" element={<UserinfoPage />} />
         <Route path="/resume" element={<ResumePage />} />
