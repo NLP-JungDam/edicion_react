@@ -194,6 +194,8 @@ const handleSave = async () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <input type="text" className={styles.titleInput} value="입사지원서" readOnly />
+      </div>
+      <div className={styles.btnBox}>
         <button className={styles.editButton} onClick={isEditing ? handleEditConfirm : () => setIsEditing(true)}>
           {isEditing ? "수정 확인" : "수정"}
         </button>

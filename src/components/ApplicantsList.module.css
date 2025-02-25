@@ -14,40 +14,54 @@
     background-color: white;
     padding: 15px;
     margin-bottom: 15px;
+    min-width: 90px;
+    overflow: hidden;
 }
 
 .leftSection {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    overflow: hidden;
+}
+
+.titleBox {
+    margin-bottom: 5px;
 }
 
 .name {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin: 0;
+    padding-right: 10px;
 }
 
 .gender {
     font-size: 14px;
     color: #555;
-    margin-bottom: 3px;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 .info {
     font-size: 14px;
     color: gray;
-    margin-bottom: 3px;
+    margin: 5px 0;
+    white-space: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
 }
 
 .rightSection {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100px;
 }
 
 .viewButton {
-    background-color: #7d5fff;
+    background-color: #6A5ACD;
     color: white;
     border: none;
     padding: 8px 15px;
@@ -55,10 +69,7 @@
     cursor: pointer;
     margin-top: 8px;
     font-weight: bold;
-}
-
-.viewButton:hover {
-    background-color: #5a4ad1;
+    width: 80px;
 }
 
 .noApplicants {

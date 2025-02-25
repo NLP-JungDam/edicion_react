@@ -31,7 +31,7 @@ function ProfileList({ selectedTalent }) {
         const data = await response.json();
 
         if (data.data.length === 0) {
-          setErrorMessage("해당하는 유저가 없습니다.");
+          setErrorMessage("해당하는 인재가 없습니다.");
         }
 
         setFilteredApplicants(data.data || []);
