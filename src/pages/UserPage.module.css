@@ -23,37 +23,39 @@
 .beforeAfterSection {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start; /* 왼쪽 정렬 */
     width: 100%;
     max-width: 350px;
-    gap: 25px; 
-    margin-top: 40px; 
-    align-self: flex-start; 
+    gap: 25px; /* Before & After 간격 증가 */
+    margin-top: 40px; /* 상단 여백 추가 */
 }
 
 /* Before & After 박스 컨테이너 */
 .exampleContainer {
     display: flex;
     flex-direction: column;
-    gap: 25px; /* ✅ 박스 간 간격 조정 */
+    gap: 25px; /* 박스 간 간격 조정 */
     width: 100%;
-    align-items: center;
 }
 
 /* Before & After 개별 박스 */
 .exampleBox {
     background-color: var(--accent-color);
-    padding: 20px; /* ✅ 내부 여백 증가 */
+    padding: 20px;
     border-radius: 12px;
     font-size: 15px;
     color: #333;
-    text-align: center;
+    text-align: left; /* 좌측 정렬 */
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-    min-height: 180px; /* ✅ 박스 크기 일정하게 유지 */
+    min-height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    line-height: 1.6; /* ✅ 글자 간격 증가 */
+    line-height: 1.6;
+}
+
+.exampleBox h4{
+    margin: 0;
 }
 
 /* 화살표 스타일 */
@@ -61,10 +63,9 @@
     font-size: 24px;
     font-weight: bold;
     color: var(--primary-color);
-    text-align: center;
-    margin: 15px 0; /* ✅ 여백 추가하여 Before와 After가 너무 붙지 않도록 함 */
+    text-align: center; /* 좌측 정렬 */
+    margin: 15px 0;
 }
-
 
 /* 중앙 콘텐츠 */
 .mainContent {
@@ -108,7 +109,7 @@
     gap: 12px;
     overflow-x: auto;
     white-space: nowrap;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     padding-bottom: 10px;
 }
