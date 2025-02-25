@@ -53,6 +53,33 @@ function ProfileList({ selectedTalent }) {
     setCurrentPage(selected);
   };
 
+  const handleSendSMS = async (phoneNumber) => {
+    if (!phoneNumber) {
+      alert("전화번호가 없습니다.");
+      return;
+    }
+
+    const businessNumber = localStorage.getItem("businessNumber");
+  
+    try {
+      const response = await fetch(`http://localhost:8080/employer/sms/${businessNumber}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phoneNumber }),
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        alert("문자가 성공적으로 전송되었습니다.");
+      } else {
+        alert(`오류 발생: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("SMS 전송 오류:", error);
+      alert("문자 전송 중 오류가 발생했습니다.");
+    }
+  };
+
   return (
     <div className={styles.container}>
       {isLoading ? (
@@ -68,6 +95,12 @@ function ProfileList({ selectedTalent }) {
                 <div key={applicant.userId} className={styles.card}>
                   <div className={styles.header}>
                     <h3 className={styles.name}>{applicant.name}</h3>
+                    <button 
+                      className={styles.call}
+                      onClick={() => handleSendSMS(applicant.phone?.number)}
+                    >
+                      연락하기
+                    </button>
                   </div>
                   <div className={styles.details}>
                     <p>생년월일: {new Date(applicant.birth).toLocaleDateString()}</p>
