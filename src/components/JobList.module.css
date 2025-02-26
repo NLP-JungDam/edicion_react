@@ -1,54 +1,66 @@
+/* 전체 컨테이너 */
 .jobList {
-    width: 500px;
-    padding: 15px;
+    width: 600px;
+    padding: 20px;
+    background: var(--background-gradient);
 }
 
+/* 제목 스타일 */
 .jobList h2 {
-   text-align: center;
-   margin-bottom: 12px;
-   font-size: 20px;
-   font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    color: var(--text-primary);
 }
 
+/* 리스트 기본 스타일 */
 .jobList ul {
     list-style: none;
     padding: 0;
 }
 
+/* 리스트 아이템 */
 .jobContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px;
+    padding: 14px;
     cursor: pointer;
     border-bottom: 1px solid var(--button-border);
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
+    color: var(--text-primary);
+    font-size: 16px;
 }
 
+/* 리스트 아이템 hover 효과 */
 .jobContainer:hover {
     background: var(--accent-color);
+    transform: scale(1.02);
 }
 
+/* 체크박스 스타일 */
 .checkboxWrapper {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* 기본 체크박스 */
+/* 기본 체크박스 숨김 */
 .jobContainer input {
     display: none;
 }
 
 /* 커스텀 체크박스 */
 .customCheckbox {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border: 2px solid var(--primary-color);
     border-radius: 4px;
     display: inline-block;
     position: relative;
     background: var(--button-bg);
+    transition: background 0.2s ease-in-out;
 }
 
 .jobContainer input:checked + .customCheckbox {
@@ -67,43 +79,49 @@
     transform: translate(-50%, -50%);
 }
 
-/* ✅ 버튼 스타일 */
-.submitButton, .loadMoreButton {
+/* 이력서 제출 버튼 */
+.submitButton {
     display: block;
     width: 100%;
-    padding: 12px 0;
-    margin-top: 15px;
-    font-size: 16px;
+    padding: 14px 0;
+    margin-top: 20px;
+    font-size: 18px;
     font-weight: bold;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* ✅ 이력서 제출 버튼 */
-.submitButton {
-    background: var(--button-bg);
-    color: var(--button-text);
-    border: 2px solid var(--button-border);
+    background: var(--primary-color);
+    color: var(--text-primary);
+    transition: all 0.3s ease-in-out;
 }
 
 .submitButton:hover {
     background: var(--button-hover-bg);
     color: var(--button-hover-text);
+    transform: translateY(-3px);
 }
 
-/* ✅ 더보기 버튼 */
+/* 더보기 버튼 */
 .loadMoreButton {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     background: var(--secondary-color);
     color: var(--text-primary);
-    border-bottom: 2px solid var(--button-border);
+    transition: all 0.3s ease-in-out;
 }
 
 .loadMoreButton:hover {
     background: var(--primary-color);
 }
 
+/* 로딩 스피너 */
 .loadingContainer {
     position: fixed;
     bottom: 20px;
@@ -111,24 +129,41 @@
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.7);
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 8px;
     font-size: 14px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
-  
+
 .loadingSpinner {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border: 3px solid white;
     border-top: 3px solid transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
-  
+
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+@media screen and (max-width: 768px) {
+    .jobList {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .jobContainer {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .submitButton, .loadMoreButton {
+        font-size: 16px;
+        padding: 12px 0;
+    }
 }

@@ -16,9 +16,8 @@ const MainPage = () => {
 
       <div className={styles.splitContainer}>
         {/* 개인 회원 섹션 */}
-        <div className={styles.leftSection}>
-          <div className={styles.overlay}></div>
-          <div className={styles.infoBox}>
+        <div className={`${styles.card} ${styles.leftCard}`}>
+          <div className={styles.cardContent}>
             <h2>맞춤형 AI 이력서 & 직무 추천</h2>
             <ul>
               <li>✔ 직무 적합도 분석</li>
@@ -32,16 +31,15 @@ const MainPage = () => {
         </div>
 
         {/* 기업 회원 섹션 */}
-        <div className={styles.rightSection}>
-          <div className={styles.overlay}></div>
-          <div className={styles.infoBox}>
+        <div className={`${styles.card} ${styles.rightCard}`}>
+          <div className={styles.cardContent}>
             <h2>AI 기반 스마트 채용 관리</h2>
             <ul>
               <li>✔ 맞춤형 인재 추천</li>
               <li>✔ 이력서 자동 분석</li>
               <li>✔ 지원자 직무 적합성 평가</li>
             </ul>
-            <button className={styles.loginButton}  onClick={() => handleNavigate("employer")}>
+            <button className={styles.loginButton} onClick={() => handleNavigate("employer")}>
               기업 회원 로그인
             </button>
           </div>
@@ -52,4 +50,3 @@ const MainPage = () => {
 };
 
 export default MainPage;
-

@@ -51,7 +51,7 @@ const Resume = ({ resumeData, isEditing, handleChange, handleAddField, handleRem
           {isEditing && <button className={styles.addButton} onClick={() => handleAddField("education", { graduated: "", department: "" })}>+ 추가</button>}
         </div>
 
-        {/* ✅ 경력사항 */}
+        {/* 경력사항 */}
         <div className={styles.section}>
           <h3 className={styles.h3}>경력사항</h3>
           {resumeData.experience?.length === 0 && isEditing && <p>추가 버튼을 눌러 경력을 입력하세요.</p>}
@@ -89,7 +89,7 @@ const Resume = ({ resumeData, isEditing, handleChange, handleAddField, handleRem
           {isEditing && <button className={styles.addButton} onClick={() => handleAddField("experience", { title: "", date: "", content: "" })}>+ 추가</button>}
         </div>
 
-        {/* ✅ 자격증 */}
+        {/* 자격증 */}
         <div className={styles.section}>
           <h3 className={styles.h3}>자격증</h3>
           {resumeData.certificates?.length === 0 && isEditing && <p>추가 버튼을 눌러 자격증을 입력하세요.</p>}
@@ -121,13 +121,13 @@ const Resume = ({ resumeData, isEditing, handleChange, handleAddField, handleRem
           {isEditing && <button className={styles.addButton} onClick={() => handleAddField("certificates", { name: "", date: "" })}>+ 추가</button>}
         </div>
 
-        {/* ✅ 자기소개서 */}
+        {/* 자기소개서 */}
         <div className={styles.section}>
           <h3 className={styles.h3}>자기소개서</h3>
           {isEditing ? (
             <textarea
               className={styles.textareaField}
-              value={resumeData?.selfIntroduction || ""} // ✅ resumeData가 없을 경우 빈 문자열로 처리
+              value={resumeData?.selfIntroduction || ""} // resumeData가 없을 경우 빈 문자열로 처리
               onChange={(e) => handleChange(e, "selfIntroduction")}
               onInput={(e) => {
                 e.target.style.height = "auto"; // 기존 높이 초기화

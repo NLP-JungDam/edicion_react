@@ -1,57 +1,58 @@
-/* 헤더 전체 스타일 */
+/* 전체 헤더 스타일 */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: var(--background-gradient); /* 연한 남색+파스텔 블루 */
-  border-bottom: 3px solid var(--button-border);
+  background: white;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   position: relative;
 }
 
 /* 로고 스타일 */
 .logo {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: bold;
   cursor: pointer;
-  text-decoration: none;
 }
 
 .logoWhite {
-  color: var(--text-primary);
+  color: #007bff;
 }
 
 .logoBlue {
   color: black;
 }
 
-/* 중앙 버튼 컨테이너 */
-.buttonContainer {
+/* 네비게이션 메뉴 컨테이너 */
+.menuContainer {
   display: flex;
-  gap: 20px; /* 버튼 간격 조정 */
+  gap: 20px;
   justify-content: center;
-  flex-grow: 1; /* 중앙 정렬 */
+  flex-grow: 1;
 }
 
-/* 버튼 스타일 (더 선명한 대비) */
-.button {
-  background-color: var(--accent-color); /* 밝은 파스텔톤 */
-  color: var(--primary-color); /* 연한 남색 */
-  border: 2px solid var(--button-border); /* 버튼 테두리 */
-  padding: 12px 22px;
-  border-radius: 30px;
-  font-size: 16px;
+/* 메뉴 스타일 */
+.menuItem {
+  font-size: 18px;
   font-weight: bold;
+  color: #333;
   cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.2s ease;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+  padding-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
 }
 
-/* 버튼 호버 효과 */
-.button:hover {
-  background-color: var(--button-hover-bg);
-  color: var(--button-hover-text);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+/* 현재 선택된 메뉴 */
+.activeMenu {
+  color: #007bff;
+  border-bottom: 3px solid #007bff;
+}
+
+/* 메뉴 hover 효과 */
+.menuItem:hover {
+  color: #007bff;
 }
 
 /* 오른쪽 설정 버튼 */
@@ -63,13 +64,13 @@
 /* 설정 아이콘 */
 .settingsIcon {
   font-size: 24px;
-  color: var(--text-primary);
+  color: #6c757d;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .settingsIcon:hover {
-  color: var(--accent-color);
+  color: #343a40;
 }
 
 /* 드롭다운 메뉴 */
@@ -77,18 +78,18 @@
   position: absolute;
   top: 50px;
   right: 20px;
-  background: var(--primary-color);
-  border: 2px solid var(--button-border);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  width: 150px;
+  width: 160px;
   padding: 10px 0;
   display: flex;
   flex-direction: column;
   z-index: 1000;
 }
 
-/* 드롭다운 메뉴 버튼 스타일 */
+/* 드롭다운 메뉴 버튼 */
 .dropdownMenu button {
   background: none;
   border: none;
@@ -97,33 +98,28 @@
   text-align: left;
   cursor: pointer;
   width: 100%;
-  color: var(--text-primary);
+  color: #333;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* 드롭다운 메뉴 버튼 hover 효과 */
+/* 드롭다운 메뉴 hover 효과 */
 .dropdownMenu button:hover {
-  background: #a3c3f8; /* 기존보다 더 밝은 블루 */
-  color: var(--primary-color);
+  background: #f8f9fa;
+  color: #007bff;
   font-weight: bold;
 }
 
 /* 반응형 디자인 */
 @media screen and (max-width: 768px) {
   .logo {
-    font-size: 22px;
+    font-size: 24px;
   }
 
-  .buttonContainer {
-    flex-direction: column;
+  .menuContainer {
     gap: 15px;
   }
 
-  .button {
-    width: 80%;
-  }
-
   .dropdownMenu {
-    width: 130px;
+    width: 140px;
   }
 }

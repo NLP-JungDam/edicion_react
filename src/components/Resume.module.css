@@ -56,13 +56,13 @@
   
   .textareaField {
     width: 100%;
-    min-height: 150px; /* ✅ 기본 높이 설정 */
-    max-height: 500px; /* ✅ 너무 커지지 않도록 설정 */
-    overflow-y: auto; /* ✅ 텍스트가 많아지면 내부에서 스크롤 */
-    resize: none; /* ✅ 사용자가 수동으로 조절하지 못하도록 설정 */
+    min-height: 150px;
+    max-height: 500px; 
+    overflow-y: auto; 
+    resize: none;
   }
 
-/* ✅ 입력 필드 (공통) */
+/* 입력 필드 (공통) */
 .inputField:focus, .textareaField:focus {
   border: 1px solid #6a5acd;
 }

@@ -37,7 +37,8 @@ const LoginUser = () => {
         localStorage.setItem("username", data.username);
 
         // 로그인 성공 후 페이지 이동
-        navigate("/user/1");
+        navigate("/user");
+
       } else {
         // 실패 시 alert 메시지 표시
         alert(`로그인 실패: ${data.message}`);
@@ -66,11 +67,6 @@ const LoginUser = () => {
         value={form.password}
         onChange={handleChange}
       />
-
-      <div className={styles.checkboxContainer}>
-        <input type="checkbox" id="keepLogin" />
-        <label htmlFor="keepLogin">로그인 상태 유지</label>
-      </div>
 
       <button className={styles.loginButton} onClick={handleLogin}>
         개인 회원 로그인

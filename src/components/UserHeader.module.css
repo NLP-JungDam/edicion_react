@@ -4,21 +4,21 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: var(--primary-color);
-    border-bottom: 3px solid var(--button-border);
+    background: white;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
     position: relative;
 }
 
 /* 로고 스타일 */
 .logo {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    text-decoration: none;
 }
 
 .logoWhite {
-    color: var(--text-primary);
+    color: #007bff;
 }
 
 .logoYellow {
@@ -34,14 +34,13 @@
 /* 설정 아이콘 */
 .settingsIcon {
     font-size: 24px;
-    color: var(--text-primary);
+    color: #6c757d;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
-/* 설정 아이콘 hover 효과 */
 .settingsIcon:hover {
-    color: #b0d0ff; /* 기존 --accent-color 보다 더 밝은 톤 사용 */
+    color: #343a40;
 }
 
 /* 드롭다운 메뉴 */
@@ -49,18 +48,18 @@
     position: absolute;
     top: 50px;
     right: 20px;
-    background: rgba(40, 80, 120, 0.9); /* 기존 --secondary-color 보다 조금 더 어두운 톤 */
-    border: 2px solid var(--button-border);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    width: 150px;
+    width: 160px;
     padding: 10px 0;
     display: flex;
     flex-direction: column;
     z-index: 1000;
 }
 
-/* 드롭다운 메뉴 버튼 스타일 */
+/* 드롭다운 메뉴 버튼 */
 .dropdownMenu button {
     background: none;
     border: none;
@@ -69,24 +68,23 @@
     text-align: left;
     cursor: pointer;
     width: 100%;
-    color: var(--text-primary);
+    color: #333;
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* 드롭다운 메뉴 버튼 hover 효과 */
+/* 드롭다운 메뉴 hover 효과 */
 .dropdownMenu button:hover {
-    background: #cde0ff; /* 기존 --accent-color 보다 더 밝은 블루 */
-    color: var(--primary-color);
-    font-weight: bold;
+    background: #f8f9fa;
+    color: #007bff;
 }
 
 /* 반응형 디자인 */
 @media screen and (max-width: 768px) {
     .logo {
-        font-size: 22px;
+        font-size: 24px;
     }
 
     .dropdownMenu {
-        width: 130px;
+        width: 140px;
     }
 }
