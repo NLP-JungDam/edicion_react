@@ -38,7 +38,7 @@
     font-size: 18px;
     font-weight: bold;
     border: none;
-    background-color: #4A6FA5;
+    background-color: #007bff;
     color: white;
     border-radius: 6px;
     cursor: pointer;
@@ -46,7 +46,7 @@
 }
 
 .paginationContainer button:hover {
-    background-color: #355B8C;
+    background-color: #007bff8f;
     transform: scale(1.1);
 }
 

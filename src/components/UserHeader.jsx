@@ -14,7 +14,7 @@ const UserHeader = () => {
   return (
     <header className={styles.header}>
       {/* 왼쪽 로고 */}
-      <div className={styles.logo} onClick={() => navigate("/user")}>
+      <div className={styles.logo} onClick={() => navigate("/user/jobposting/1")}>
         <span className={styles.logoWhite}>Edi</span>
         <span className={styles.logoYellow}>ción</span>
       </div>
