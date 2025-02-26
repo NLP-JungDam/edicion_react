@@ -76,6 +76,12 @@ const UserPage = () => {
             });
 
             const data = await response.json();
+
+            if (data.verify) {
+                alert('자기를 소개하는 글을 작성하셔야 합니다.')
+                return
+            }
+
             navigate('/user/fit', { state: { responseData: data, selectedJob } });
         } catch (error) {
             console.error('에러 발생:', error);
@@ -174,6 +180,12 @@ const UserPage = () => {
                     <textarea value={textareaValue} onChange={e => setTextareaValue(e.target.value)} placeholder="200자 이상의 자기소개서를 입력하세요."></textarea>
                     <button onClick={handleSubmit}>입력하기</button>
                 </section>
+                {loading && (
+                <div className={styles.loadingContainer}>
+                    <div className={styles.loadingSpinner}></div>
+                    <p>적합성을 평가 중입니다! 잠시만 기다려 주세요.</p>
+                </div>
+            )}
             </div>
         </div>
     );
