@@ -20,25 +20,22 @@ const ApplicantsPage = () => {
 
       const data = await response.json();
 
-      // 데이터 정리: user가 존재하는 경우만 필터링하고, fitness 값을 함께 저장
       const processedApplicants = data.data
-      .filter(applicant => applicant.user) // user 정보가 있는 경우만 사용
-      .map(applicant => ({
-        ...applicant.user, // user 정보 저장
-        fitness: applicant.fitness // fitness 추가
-      }));
+        .filter(applicant => applicant.user)
+        .map(applicant => ({
+          ...applicant.user,
+          fitness: applicant.fitness
+        }));
       setApplicants(processedApplicants);
     } catch (error) {
       console.error("지원자 목록 조회 오류:", error);
     }
   };
 
-  // 페이지가 렌더링되면 fetch 실행
   if (applicants.length === 0) {
     fetchApplicants();
   }
 
-  // 지원자 선택 시 해당 이력서 표시
   const handleViewResume = (resumeData) => {
     setSelectedResume(resumeData);
   };
@@ -46,10 +43,14 @@ const ApplicantsPage = () => {
   return (
     <div className={styles.container}>
       {/* 좌측 지원자 리스트 */}
-      <ApplicantsList applicants={applicants} onSelectApplicant={handleViewResume} />
+      <div className={styles.applicantsPanel}>
+        <ApplicantsList applicants={applicants} onSelectApplicant={handleViewResume} />
+      </div>
 
       {/* 우측 이력서 상세 */}
-      <ResumeDetail selectedResume={selectedResume} />
+      <div className={styles.resumePanel}>
+        <ResumeDetail selectedResume={selectedResume} />
+      </div>
     </div>
   );
 };

@@ -1,18 +1,20 @@
 .container {
-    padding: 16px;
+    padding: 15px;
+    max-width: 850px;
+    margin: auto;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
 }
 
 .card {
-    padding: 16px;
-    border: 1px solid #999;
-    border-radius: 8px;
-    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 .header {
@@ -24,10 +26,30 @@
 .name {
     font-size: 18px;
     font-weight: bold;
+    color: #222;
+}
+
+.call {
+    padding: 6px 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    width: 80px;
+    transition: all 0.3s ease;
+}
+
+.call:hover {
+    background: #0056b3;
 }
 
 .details p {
     margin: 4px 0;
+    font-size: 14px;
+    color: #333;
 }
 
 /* 페이지네이션 */

@@ -9,7 +9,7 @@ const LoginEmployer = () => {
     password: "",
   });
 
-  // ✅ 사업자등록번호 자동 포맷팅 (xxx-xx-xxxxx)
+  // 사업자등록번호 자동 포맷팅 (xxx-xx-xxxxx)
   const formatBusinessNumber = (value) => {
     const numericValue = value.replace(/\D/g, ""); // 숫자만 남기기
 
@@ -25,7 +25,7 @@ const LoginEmployer = () => {
   const handleChange = (e) => {
     let { name, value } = e.target;
 
-    // ✅ 사업자 등록번호 입력 시 자동 포맷 적용
+    // 사업자 등록번호 입력 시 자동 포맷 적용
     if (name === "businessNumber") {
       value = formatBusinessNumber(value);
     }
@@ -39,7 +39,7 @@ const LoginEmployer = () => {
       return;
     }
 
-    // ✅ 백엔드로 전송 시 '-' 제거
+    // 백엔드로 전송 시 '-' 제거
     const formattedData = {
       businessNumber: form.businessNumber.replace(/-/g, ""),
       password: form.password,
@@ -58,9 +58,9 @@ const LoginEmployer = () => {
 
       if (response.ok) {
         alert("로그인 성공!");
-        localStorage.setItem("token", data.token); // ✅ 토큰 저장
+        localStorage.setItem("token", data.token); // 토큰 저장
         localStorage.setItem("businessNumber", formattedData.businessNumber);
-        navigate("/employer/applicants"); // ✅ 로그인 후 이동
+        navigate("/employer/applicants"); // 로그인 후 이동
       } else {
         alert(`로그인 실패: ${data.message}`);
       }
@@ -93,11 +93,6 @@ const LoginEmployer = () => {
         onChange={handleChange}
         className={styles.input}
       />
-
-      <div className={styles.checkboxContainer}>
-        <input type="checkbox" id="keepLogin" />
-        <label htmlFor="keepLogin">로그인 상태 유지</label>
-      </div>
 
       <button className={styles.loginButton} onClick={handleLogin}>
         기업 회원 로그인

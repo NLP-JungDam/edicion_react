@@ -15,7 +15,7 @@ const SignupUser = () => {
         day: "",
         password: "",
         passwordConfirm: "",
-        education: [], // ✅ 학력을 배열로 변경
+        education: [], // 학력을 배열로 변경
         license: [],
         history: [],
     });
@@ -24,7 +24,7 @@ const SignupUser = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    // ✅ 학력 추가/삭제
+    // 학력 추가/삭제
     const addEducation = () => {
         setForm({ ...form, education: [...form.education, { graduated: "", department: "" }] });
     };
@@ -37,7 +37,7 @@ const SignupUser = () => {
         setForm({ ...form, education: updatedEducation });
     };
 
-    // ✅ 자격증 추가/삭제
+    // 자격증 추가/삭제
     const addLicense = () => {
         setForm({ ...form, license: [...form.license, { name: "", date: "" }] });
     };
@@ -50,7 +50,7 @@ const SignupUser = () => {
         setForm({ ...form, license: updatedLicenses });
     };
 
-    // ✅ 경력 추가/삭제
+    // 경력 추가/삭제
     const addHistory = () => {
         setForm({ ...form, history: [...form.history, { title: "", date: "", content: "" }] });
     };
@@ -77,7 +77,7 @@ const SignupUser = () => {
             gender: form.gender,
             birth: `${form.year}-${form.month}-${form.day}`,
             password: form.password,
-            education: form.education, // ✅ 학력 데이터를 리스트로 전송
+            education: form.education, // 학력 데이터를 리스트로 전송
             license: form.license,
             history: form.history,
         };
@@ -123,7 +123,7 @@ const SignupUser = () => {
                     <input type="text" name="day" placeholder="일" onChange={handleChange} className={styles.inputField} />
                 </div>
 
-                {/* ✅ 학력 입력 */}
+                {/* 학력 입력 */}
                 <div className={styles.dynamicSection}>
                     <div className={styles.dynamicTitle}>
                         <label>학력</label>
@@ -138,7 +138,7 @@ const SignupUser = () => {
                     ))}
                 </div>
 
-                {/* ✅ 자격증 입력 */}
+                {/* 자격증 입력 */}
                 <div className={styles.dynamicSection}>
                     <div className={styles.dynamicTitle}>
                         <label>자격증</label>
@@ -153,7 +153,7 @@ const SignupUser = () => {
                     ))}
                 </div>
 
-                {/* ✅ 경력 입력 */}
+                {/* 경력 입력 */}
                 <div className={styles.dynamicSection}>
                     <div className={styles.dynamicTitle}>
                         <label>경력</label>

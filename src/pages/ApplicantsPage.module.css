@@ -1,6 +1,45 @@
 /* 전체 레이아웃 */
 .container {
   display: flex;
-  height: 100vh;
-  background: #f9f9f9;
+  height: 90vh;
+  background: white;
+  padding: 15px;
+  gap: 15px;
+  overflow: hidden;
+}
+
+/* 지원자 리스트 패널 */
+.applicantsPanel {
+  flex: 1;
+  max-width: 320px;
+  min-width: 280px;
+  background: white;
+  padding: 15px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* 이력서 상세 패널 */
+.resumePanel {
+  flex: 2;
+  background: white;
+  padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .applicantsPanel,
+  .resumePanel {
+    width: 100%;
+    max-width: none;
+    padding: 12px;
+  }
 }

@@ -5,18 +5,18 @@ import styles from "../pages/LoginPage.module.css";
 const LoginUser = () => {
   const navigate = useNavigate();
 
-  // ✅ 로그인 폼 상태 관리
+  // 로그인 폼 상태 관리
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
-  // ✅ 입력값 변경 핸들러
+  // 입력값 변경 핸들러
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // ✅ 로그인 요청
+  // 로그인 요청
   const handleLogin = async () => {
     try {
       const response = await fetch("http://localhost:8080/auth/login/user", {
@@ -31,15 +31,15 @@ const LoginUser = () => {
         alert("로그인 성공!");
         console.log("Response:", data);
 
-        // ✅ 토큰 및 사용자 정보 저장
+        // 토큰 및 사용자 정보 저장
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.id);
         localStorage.setItem("username", data.username);
 
-        // ✅ 로그인 성공 후 페이지 이동
+        // 로그인 성공 후 페이지 이동
         navigate("/user");
       } else {
-        // ✅ 실패 시 alert 메시지 표시
+        // 실패 시 alert 메시지 표시
         alert(`로그인 실패: ${data.message}`);
       }
     } catch (error) {
@@ -66,11 +66,6 @@ const LoginUser = () => {
         value={form.password}
         onChange={handleChange}
       />
-
-      <div className={styles.checkboxContainer}>
-        <input type="checkbox" id="keepLogin" />
-        <label htmlFor="keepLogin">로그인 상태 유지</label>
-      </div>
 
       <button className={styles.loginButton} onClick={handleLogin}>
         개인 회원 로그인

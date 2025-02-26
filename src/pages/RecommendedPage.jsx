@@ -8,11 +8,11 @@ function RecommendedPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>추천 인재</h1>
+      <h1 className={styles.title}>추천 인재 리스트</h1>
       <p className={styles.description}>
-        업계 트렌드와 기업 요구에 맞는 인재를 추천해 드립니다.
+        현재 인재상 트렌드에 맞는 인재들을 확인할 수 있어요
         <br />
-        우수한 인재를 빠르게 만나보세요!
+        <strong>연락하기 버튼 클릭</strong> 시 추천 인재에게 기업 정보가 담긴 <strong>문자</strong>가 발송돼요!
       </p>
       <TalentTab onSelectTalent={setSelectedTalent} />
       <ProfileList selectedTalent={selectedTalent} />

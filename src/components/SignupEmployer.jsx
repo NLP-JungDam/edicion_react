@@ -14,7 +14,7 @@ const SignupEmployer = () => {
         passwordConfirm: "",
     });
 
-    // ✅ 사업자등록번호 자동 포맷팅 (xxx-xx-xxxxx)
+    // 사업자등록번호 자동 포맷팅 (xxx-xx-xxxxx)
     const formatBusinessNumber = (value) => {
         // 숫자만 남기기
         const numericValue = value.replace(/\D/g, "");
@@ -32,7 +32,7 @@ const SignupEmployer = () => {
     const handleChange = (e) => {
         let { name, value } = e.target;
 
-        // ✅ 사업자 등록번호 입력 시 자동 포맷 적용
+        // 사업자 등록번호 입력 시 자동 포맷 적용
         if (name === "businessNumber") {
             value = formatBusinessNumber(value);
         }
@@ -48,7 +48,7 @@ const SignupEmployer = () => {
             return;
         }
 
-        // ✅ 백엔드로 전송 시 '-' 제거
+        // 백엔드로 전송 시 '-' 제거
         const formattedData = {
             businessNumber: form.businessNumber.replace(/-/g, ""), // '-' 제거 후 전송
             name: form.name,
