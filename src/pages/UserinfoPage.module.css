@@ -1,11 +1,10 @@
 .container {
     width: 100%;
-    max-width: 500px;
+    min-height: 100vh;
+    max-width: 700px;
     margin: 0 auto;
-    background: var(--background-gradient);
+    background: linear-gradient(135deg, #e0f7ff, #ffffff);
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* 유저 정보 섹션 */
@@ -18,19 +17,19 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: var(--text-primary);
+    color: black;
 }
 
 .name {
     font-size: 18px;
     font-weight: bold;
     margin-top: 5px;
-    color: var(--text-primary);
+    color: black;
 }
 
 .email {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: #6c757d;
     margin-top: 5px;
 }
 
@@ -43,17 +42,16 @@
 
 .menuItem {
     padding: 15px 0;
-    border-bottom: 1px solid var(--button-border);
+    border-bottom: 1px solid #ddd;
     font-size: 16px;
     cursor: pointer;
-    color: var(--text-primary);
+    color: black;
     transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* 메뉴 호버 효과 */
 .menuItem:hover {
-    background: var(--accent-color);
-    color: var(--primary-color);
+    background: #f1faff;
     font-weight: bold;
 }
 
@@ -66,8 +64,8 @@
 
 /* 버튼 스타일 */
 .button {
-    background: var(--button-bg);
-    color: var(--button-text);
+    background: #007bff;
+    color: #ffffff;
     padding: 10px 16px;
     border-radius: 10px;
     border: none;
@@ -79,6 +77,6 @@
 
 /* 버튼 호버 효과 */
 .button:hover {
-    background: var(--button-hover-bg);
-    color: var(--button-hover-text);
+    background: #0056b3;
+    color: #ffffff;
 }
