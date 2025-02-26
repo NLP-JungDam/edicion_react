@@ -90,29 +90,60 @@ const UserfitPage = () => {
     }
   };
 
+  const processMarkdownText = (text) => {
+    if (!text) return { beforeFinal: "", afterFinal: "" };
+  
+    const content = Array.isArray(text) ? text.join("") : text;
+    if (typeof content !== "string") return { beforeFinal: JSON.stringify(content), afterFinal: "" };
+  
+    // 최종적으로를 찾고, 마크다운 형식까지 유지하도록 분리
+    const match = content.match(/(\*\*?최종적으로\*\*?)(.*)/s);
+    
+    if (match) {
+      return {
+        beforeFinal: content.replace(match[0], ""), // "최종적으로" 포함 이후 문장 제거
+        afterFinal: match[0], // "최종적으로" 이후 부분 저장 (마크다운 유지)
+      };
+    }
+    
+    return { beforeFinal: content, afterFinal: "" };
+  };
+  
+  const { beforeFinal, afterFinal } = processMarkdownText(lowestJobStudy);
+
   return (
     <div className={styles.container}>
-      <div className={styles.content}>
-        <h1 className={styles.title}>직무 적합성 분석 결과</h1>
+    <div className={styles.content}>
+      <h1 className={styles.title}>직무 적합성 분석 결과</h1>
 
-        {!showRecommendation && (
-          <div className={styles.studyContainer}>
-            <h2 className={styles.warningTitle}>
-              <BiTrendingDown className={styles.icon} /> 선택한 직업의 적합도가 낮습니다.
-            </h2>
-            <p className={styles.warningText}>
-              선택한 "{selectedJob}" 직업의 적합도가 낮습니다. 아래의 학습 방법을 참고하여 개선해 보세요.
-            </p>
-            <div className={styles.studyBox}>
-              <h3 className={styles.studyTitle}>
-                <BiSearch className={styles.icon} /> 추천 학습 방법
-              </h3>
+      {!showRecommendation && (
+        <div className={styles.studyContainer}>
+          <h2 className={styles.warningTitle}>
+            <BiTrendingDown className={styles.icon} /> 선택한 직업의 적합도가 낮습니다.
+          </h2>
+          <p className={styles.warningText}>
+            선택한 "{selectedJob}" 직업의 적합도가 낮습니다. 아래의 학습 방법을 참고하여 개선해 보세요.
+          </p>
+          <div className={styles.studyBox}>
+            <h3 className={styles.studyTitle}>
+              <BiSearch className={styles.icon} /> 추천 학습 방법
+            </h3>
+              {/* 기존 마크다운 (최종적으로 전 부분) */}
               <ReactMarkdown components={{ p: ({ node, ...props }) => <p className={styles.studyContent} {...props} /> }}>
-                {lowestJobStudy}
+                {beforeFinal}
               </ReactMarkdown>
-            </div>
+
+              {/* 최종적으로 이후 문장 (마크다운 유지) */}
+              {afterFinal && (
+                <div className={styles.finalStatementBox}>
+                  <ReactMarkdown components={{ p: ({ node, ...props }) => <p className={styles.finalStatement} {...props} /> }}>
+                    {afterFinal}
+                  </ReactMarkdown>
+                </div>
+              )}
           </div>
-        )}
+        </div>
+      )}
 
         <div className={styles.barChartContainer}>
           <h2 className={styles.subTitle}>직무별 적합도 비교</h2>
@@ -128,6 +159,37 @@ const UserfitPage = () => {
               ],
             }}
             options={{
+              plugins: {
+                legend: {
+                  display: true,
+                  position: "top",
+                  labels: {
+                    color: "#333", // 범례 텍스트 색상 (기본값)
+                    font: {
+                      size: 14,
+                    },
+                    generateLabels: (chart) => {
+                      return [
+                        {
+                          text: "내가 선택한 직무",
+                          fillStyle: "rgba(0, 123, 255, 0.8)", // 선택한 직무 색상
+                          hidden: false,
+                        },
+                        {
+                          text: "Top 1 직무 (가장 높은 적합도)",
+                          fillStyle: "rgba(0, 86, 179, 0.8)", // Top 1 직무 색상
+                          hidden: false,
+                        },
+                        {
+                          text: "기타 직무",
+                          fillStyle: "rgba(173, 216, 230, 0.8)", // 기타 직무 색상
+                          hidden: false,
+                        },
+                      ];
+                    },
+                  },
+                },
+              },
               scales: {
                 y: {
                   min: 0,
@@ -139,6 +201,7 @@ const UserfitPage = () => {
               },
             }}
           />
+
         </div>
 
         {showRecommendation && (

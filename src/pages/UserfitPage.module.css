@@ -216,6 +216,24 @@
   vertical-align: middle;
 }
 
+.finalStatementBox {
+  margin-top: 15px;
+  padding: 12px 15px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+  background-color: #f9f9f9;
+  border-left: 4px solid #0056b3;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+.finalKeyword {
+  color: #0056b3; /* 진한 파란색 */
+  font-weight: bold;
+}
+
+
 /* 반응형 조정 */
 @media screen and (max-width: 768px) {
   .content {
