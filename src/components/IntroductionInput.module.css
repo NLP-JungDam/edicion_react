@@ -1,0 +1,78 @@
+/* 입력 필드 컨테이너 */
+.inputContainer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    padding: 12px;
+    background-color: var(--background-gradient);
+    border-radius: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* 직업 선택 드롭다운 */
+.inputContainer select {
+    padding: 12px;
+    border: 2px solid var(--button-border);
+    border-radius: 15px;
+    background-color: var(--button-bg);
+    font-size: 16px;
+    cursor: pointer;
+    min-width: 120px;
+    font-weight: bold;
+    color: var(--button-text);
+}
+
+/* 자기소개서 입력 */
+.textarea {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--button-border);
+    background-color: white;
+    border-radius: 15px;
+    outline: none;
+    font-size: 16px;
+    resize: none;
+    height: 80px;
+    max-height: 150px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: black;
+}
+
+/* 입력하기 버튼 */
+.inputContainer button {
+    padding: 12px 20px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 2px solid var(--button-border);
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    height: 50px;
+}
+
+.inputContainer button:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    transform: scale(1.05);
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+    .inputContainer {
+        flex-direction: column;
+        width: 90%;
+        gap: 10px;
+    }
+
+    .inputContainer select,
+    .textarea,
+    .inputContainer button {
+        width: 100%;
+    }
+}
