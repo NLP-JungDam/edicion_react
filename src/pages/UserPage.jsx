@@ -77,9 +77,10 @@ const UserPage = () => {
 
             const data = await response.json();
 
-            if (data.verify) {
-                alert('자기를 소개하는 글을 작성하셔야 합니다.')
-                return
+            // console.log(data.verify)
+            if (data.verify === false) {
+                alert('입력하신 글은 자기소개서 형태가 아닙니다. 본인을 소개하는 글을 작성해 주세요.');
+                return;
             }
 
             navigate('/user/fit', { state: { responseData: data, selectedJob } });
