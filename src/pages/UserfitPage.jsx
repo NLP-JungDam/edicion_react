@@ -3,7 +3,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
+import { FaFileAlt, FaStar } from "react-icons/fa";
+import { BiTrendingDown, BiSearch } from "react-icons/bi";
 import styles from "./UserfitPage.module.css";
+
 
 const UserfitPage = () => {
   const location = useLocation();
@@ -48,10 +51,10 @@ const UserfitPage = () => {
 
   const barColors = Object.keys(normalizedScores).map((job) =>
     job === selectedJob
-      ? "rgba(255, 99, 132, 0.8)"
+      ? "rgba(0, 123, 255, 0.8)"
       : job === topJob
-      ? "rgba(138, 100, 214, 0.8)"
-      : "rgba(200, 200, 200, 0.8)"
+        ? "rgba(0, 86, 179, 0.8)"
+        : "rgba(173, 216, 230, 0.8)"
   );
 
   const handleSaveToDB = async () => {
@@ -82,7 +85,7 @@ const UserfitPage = () => {
       alert("이력서가 성공적으로 저장되었습니다!");
       navigate("/user/resume");
     } catch (error) {
-      console.error("❌ 이력서 저장 중 오류 발생:", error);
+      console.error("이력서 저장 중 오류 발생:", error);
       alert("이력서 저장에 실패했습니다.");
     }
   };
@@ -94,12 +97,16 @@ const UserfitPage = () => {
 
         {!showRecommendation && (
           <div className={styles.studyContainer}>
-            <h2 className={styles.warningTitle}>📉 선택한 직업의 적합도가 낮습니다.</h2>
+            <h2 className={styles.warningTitle}>
+              <BiTrendingDown className={styles.icon} /> 선택한 직업의 적합도가 낮습니다.
+            </h2>
             <p className={styles.warningText}>
               선택한 "{selectedJob}" 직업의 적합도가 낮습니다. 아래의 학습 방법을 참고하여 개선해 보세요.
             </p>
             <div className={styles.studyBox}>
-              <h3 className={styles.studyTitle}>🔍 추천 학습 방법</h3>
+              <h3 className={styles.studyTitle}>
+                <BiSearch className={styles.icon} /> 추천 학습 방법
+              </h3>
               <ReactMarkdown components={{ p: ({ node, ...props }) => <p className={styles.studyContent} {...props} /> }}>
                 {lowestJobStudy}
               </ReactMarkdown>
@@ -137,17 +144,17 @@ const UserfitPage = () => {
         {showRecommendation && (
           <div className={styles.resumeBox}>
             <div className={styles.tabContainer}>
-              <button
+            <button
                 className={`${styles.tabButton} ${activeTab === "userInput" ? styles.active : ""}`}
                 onClick={() => setActiveTab("userInput")}
               >
-                📄 내가 작성한 자기소개서
+                <FaFileAlt className={styles.icon} /> 내가 작성한 자기소개서
               </button>
               <button
                 className={`${styles.tabButton} ${activeTab === "recommendedResume" ? styles.active : ""}`}
                 onClick={() => setActiveTab("recommendedResume")}
               >
-                ⭐ 추천 자기소개서
+                <FaStar className={styles.icon} /> 추천 자기소개서
               </button>
             </div>
           

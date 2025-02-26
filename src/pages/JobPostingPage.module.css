@@ -8,6 +8,7 @@
     padding: 30px 20px;
     align-items: center;
     min-height: 85vh;
+    background: linear-gradient(135deg, #e0f7ff, #ffffff);
 }
 
 /* 상단 제목 영역 */
@@ -19,7 +20,7 @@
 .textContainer h1 {
     font-size: 26px;
     font-weight: bold;
-    color: #4A6FA5;
+    color: #007bff;
 }
 
 .textContainer h6 {
@@ -44,7 +45,7 @@
     padding: 10px 14px;
     text-align: center;
     border: none;
-    background: #E3E6F0;
+    background: #e7f2ff;
     color: #333;
     border-radius: 6px;
     cursor: pointer;
@@ -56,7 +57,7 @@
 
 .jobTab:hover,
 .activeTab {
-    background: #4A6FA5;
+    background: #007bff;
     color: white;
     transform: scale(1.05);
 }
@@ -78,7 +79,7 @@
     font-size: 22px;
     font-weight: bold;
     color: #222;
-    background: #f3f5ff;
+    background: #f0f8ff;
     padding: 15px 30px;
     border-radius: 12px;
     cursor: pointer;
@@ -88,7 +89,7 @@
 
 /* 컨테이너 호버 시 강조 */
 .introductionContainer:hover {
-    background: #4a6fa5;
+    background: #007bff;
     color: white;
     transform: scale(1.08);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -98,7 +99,7 @@
 .arrow {
     font-size: 32px;
     font-weight: bold;
-    color: #4A6FA5;
+    color: #007bff;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
     animation: arrowBounce 1s infinite alternate ease-in-out;

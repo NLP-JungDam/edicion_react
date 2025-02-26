@@ -1,12 +1,14 @@
+/* 전체 컨테이너 */
 .container {
   display: flex;
   min-height: 100vh; 
   height: auto;
   justify-content: center;
-  align-items: flex-start; /* ✅ 최상단부터 시작하도록 변경 */
+  align-items: flex-start; /* 최상단부터 시작하도록 */
   overflow-x: hidden;
 }
 
+/* 콘텐츠 영역 */
 .content {
   text-align: center;
   background-color: white;
@@ -16,57 +18,55 @@
   width: 900px;
   max-width: 95%;
   min-height: 90vh;
-  height: auto; /* ✅ 내용이 많아지면 자동 확장 */
-  overflow-y: auto; /* ✅ 내부 스크롤 가능하도록 설정 */
+  height: auto; /* 내용이 많아지면 자동 확장 */
+  overflow-y: auto; /* 내부 스크롤 가능 */
   max-height: 100%;
 }
 
-/* ✅ 제목 스타일 */
+/* 제목 스타일 */
 .title {
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 3px solid var(--primary-color);
-  color: var(--text-primary);
+  border-bottom: 3px solid #007bff;
+  color: #007bff;
 }
 
-/* ✅ 탭 스타일 */
-/* ✅ 탭 스타일 */
-/* ✅ 자기소개서 탭 스타일 */
+/* 탭 컨테이너 */
 .tabContainer {
   display: flex;
   justify-content: center;
   gap: 40px;
   margin-top: 25px;
-  border-bottom: 3px solid var(--button-border);
+  border-bottom: 3px solid #ddd;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* ✅ 탭 버튼 */
+/* 탭 버튼 */
 .tabButton {
   background: none;
   border: none;
   font-size: 18px;
   padding: 12px 25px;
   cursor: pointer;
-  color: var(--text-secondary);
+  color: #666;
   transition: all 0.3s ease-in-out;
 }
 
 .tabButton:hover {
-  color: var(--text-primary);
+  color: #007bff;
 }
 
 .tabButton.active {
   font-weight: bold;
-  color: var(--primary-color);
-  border-bottom: 3px solid var(--primary-color);
+  color: #007bff;
+  border-bottom: 3px solid #007bff;
 }
 
-/* ✅ 탭 내용 */
+/* 탭 내용 */
 .tabContent {
   background: #f9f9f9;
   padding: 20px;
@@ -75,15 +75,14 @@
   width: 85%;
   margin-left: auto;
   margin-right: auto;
-  display: none; /* 기본적으로 숨김 */
+  display: none; /* 기본 숨김 */
 }
 
 .tabContent.active {
-  display: block; /* 활성 탭은 보이도록 설정 */
+  display: block;
 }
 
-
-/* ✅ 자기소개서 박스 */
+/* 자기소개서 박스 */
 .resumeBox {
   background: #f9f9f9;
   padding: 20px;
@@ -102,13 +101,14 @@
 
 .resumeContent {
   font-size: 16px;
-  white-space: pre-line; /* ✅ 문단별 자동 줄바꿈 적용 */
+  white-space: pre-line; /* 문단별 자동 줄바꿈 */
   color: #555;
   text-align: left;
   line-height: 1.6;
-  word-break: break-word; /* ✅ 긴 단어가 잘리도록 설정 */
+  word-break: break-word;
 }
-/* ✅ 차트 컨테이너 */
+
+/* 차트 컨테이너 */
 .barChartContainer {
   margin-top: 30px;
   width: 85%;
@@ -116,7 +116,7 @@
   margin-right: auto;
 }
 
-/* ✅ 그래프 스타일 */
+/* 그래프 스타일 */
 .selectedJobBar {
   background-color: rgba(255, 99, 132, 0.8) !important;
 }
@@ -125,7 +125,7 @@
   background-color: rgba(138, 100, 214, 0.8) !important;
 }
 
-/* ✅ 버튼 컨테이너 */
+/* 버튼 컨테이너 */
 .buttonContainer {
   display: flex;
   justify-content: center;
@@ -133,7 +133,7 @@
   margin-top: 25px;
 }
 
-/* ✅ 기본 버튼 스타일 */
+/* 기본 버튼 스타일 */
 .buttonPrimary,
 .buttonSecondary {
   flex: 1;
@@ -147,31 +147,26 @@
   font-weight: bold;
 }
 
-/* ✅ 주요 버튼 (이력서 작성 버튼) */
+/* 주요 버튼 (이력서 작성 버튼) */
 .buttonPrimary {
-  background: var(--button-bg);
-  color: var(--button-text);
-  border: 2px solid var(--button-border);
+  background: #007bff;
+  color: white;
+  border: 2px solid #ddd;
 }
 
 .buttonPrimary:hover {
-  background: var(--button-hover-bg);
-  color: var(--button-hover-text);
+  background: #0056b3;
+  color: white;
 }
 
-/* ✅ 보조 버튼 (다시 작성 버튼) */
+/* 보조 버튼 (다시 작성 버튼) */
 .buttonSecondary {
-  background: var(--secondary-color);
-  color: var(--text-primary);
-  border: 2px solid var(--button-border);
+  background: #e7f2ff;
+  color: #333;
+  border: 2px solid #ddd;
 }
 
-.buttonSecondary:hover {
-  background: var(--primary-color);
-  color: var(--text-primary);
-}
-
-/* ✅ 학습 방법 (study) 컨테이너 */
+/* 학습 방법 (study) 컨테이너 */
 .studyContainer {
   text-align: left;
   width: 85%;
@@ -182,7 +177,7 @@
   border-radius: 10px;
 }
 
-/* ✅ 학습 방법 제목 */
+/* 학습 방법 제목 */
 .warningTitle {
   font-size: 20px;
   font-weight: bold;
@@ -190,14 +185,14 @@
   margin-bottom: 10px;
 }
 
-/* ✅ 학습 방법 설명 */
+/* 학습 방법 설명 */
 .warningText {
   font-size: 16px;
   color: #555;
   margin-bottom: 15px;
 }
 
-/* ✅ 학습 방법 내용 */
+/* 학습 방법 내용 */
 .studyBox {
   background-color: white;
   padding: 15px;
@@ -208,14 +203,20 @@
   word-break: break-word;
 }
 
-/* ✅ 마크다운 텍스트 스타일 */
+/* 마크다운 텍스트 스타일 */
 .studyContent {
   font-size: 16px;
   line-height: 1.6;
   color: #333;
 }
 
-/* ✅ 반응형 조정 */
+.icon {
+  margin-right: 8px;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+/* 반응형 조정 */
 @media screen and (max-width: 768px) {
   .content {
     padding: 30px;
