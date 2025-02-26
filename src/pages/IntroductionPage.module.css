@@ -1,0 +1,127 @@
+/* 전체 컨테이너 */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 텍스트 섹션 */
+.textContainer {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.textContainer h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #4A6FA5;
+}
+
+.importantNote {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.textContainer h6 {
+    font-size: 15px;
+    font-weight: 500;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Before & After 컨테이너 */
+.exampleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+}
+
+/* Before & After 박스 */
+.exampleBox {
+    width: 100%;
+    background: #f8f9fc;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+    border-left: 5px solid #4A6FA5;
+}
+
+/* Before 스타일 */
+.beforeBox {
+    background: #ffecec;
+    border-left: 5px solid #e57373;
+}
+
+/* After 스타일 */
+.afterBox {
+    background: #e8f5e9;
+    border-left: 5px solid #388e3c;
+}
+
+/* 화살표 스타일 */
+.arrow {
+    font-size: 40px;
+    font-weight: bold;
+    color: #4A6FA5;
+    animation: bounce 1.2s infinite alternate ease-in-out;
+}
+
+/* 화살표 애니메이션 */
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(12px);
+    }
+}
+
+/* 로딩 스피너 */
+.loadingContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loadingSpinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid white;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 768px) {
+    .exampleContainer {
+        max-width: 100%;
+    }
+}

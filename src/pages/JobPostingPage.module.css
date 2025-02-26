@@ -1,0 +1,121 @@
+/* 전체 컨테이너 */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    align-items: center;
+    min-height: 85vh;
+}
+
+/* 상단 제목 영역 */
+.textContainer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.textContainer h1 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #4A6FA5;
+}
+
+.textContainer h6 {
+    font-size: 15px;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 직업 탭 */
+.jobTabs {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 8px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 15px;
+}
+
+/* 직업 탭 버튼 */
+.jobTab {
+    padding: 10px 14px;
+    text-align: center;
+    border: none;
+    background: #E3E6F0;
+    color: #333;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.jobTab:hover,
+.activeTab {
+    background: #4A6FA5;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* 반응형: 직업 탭 5 × 2 정렬 */
+@media screen and (max-width: 1024px) {
+    .jobTabs {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* 자기소개 이동 컨테이너 */
+.introductionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #222;
+    background: #f3f5ff;
+    padding: 15px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 컨테이너 호버 시 강조 */
+.introductionContainer:hover {
+    background: #4a6fa5;
+    color: white;
+    transform: scale(1.08);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 화살표 애니메이션 */
+.arrow {
+    font-size: 32px;
+    font-weight: bold;
+    color: #4A6FA5;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    animation: arrowBounce 1s infinite alternate ease-in-out;
+}
+
+/* 화살표 애니메이션 효과 */
+@keyframes arrowBounce {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(12px);
+    }
+}
+
+/* 화살표 호버 시 강조 */
+.introductionContainer:hover .arrow {
+    color: white;
+    transform: scale(1.3);
+}
