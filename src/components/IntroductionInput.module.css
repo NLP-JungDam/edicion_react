@@ -2,37 +2,37 @@
 .inputContainer {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
     justify-content: center;
-    padding: 12px;
+    padding: 16px;
     width: 80%;
     margin: 0 auto;
 }
 
 /* 직업 선택 드롭다운 */
 .inputContainer select {
-    padding: 12px;
+    padding: 16px;
     border: 2px solid #007bff;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
-    min-width: 120px;
+    min-width: 140px;
     font-weight: bold;
     color: black;
 }
 
-/* 자기소개서 입력 */
+/* 자기소개서 입력 (textarea 크기 증가 및 스타일 조정) */
 .textarea {
     flex: 1;
-    padding: 12px;
+    padding: 16px;
     border: 2px solid #007bff;
     background-color: white;
     border-radius: 15px;
     outline: none;
-    font-size: 16px;
+    font-size: 18px;
     resize: none;
-    height: 150px;
-    max-height: 300px;
+    height: 250px;       /* 높이 증가 */
+    max-height: 400px;   /* 최대 높이 조정 */
     overflow-y: auto;
     white-space: pre-wrap;
     word-break: break-word;
@@ -41,21 +41,20 @@
 
 /* 입력하기 버튼 */
 .inputContainer button {
-    padding: 12px 20px;
+    padding: 16px 24px;
     background-color: #007bff;
     color: white;
     border: 2px solid #007bff;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
-    height: 50px;
+    /* 고정 높이 대신 패딩으로 크기 조절 */
 }
 
 .inputContainer button:hover {
     background-color: #0056b3;
-    color: white;
     transform: scale(1.05);
 }
 
