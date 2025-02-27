@@ -27,6 +27,7 @@
     flex-direction: column;
     flex-grow: 1;
     overflow: hidden;
+    width: 70%;
 }
 
 /* 지원자 이름 및 성별 */
